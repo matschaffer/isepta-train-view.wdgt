@@ -14,8 +14,8 @@ body {
     top: 0px;
     left: 0px;
     right: 0px;
-    width: auto;
     bottom: 0px;
+    width: auto;
     height: auto;
 }
 
@@ -26,7 +26,7 @@ body {
     width: 13px;
     height: 13px;
     top: auto;
-    left: auto;
+    left: 249px;
 }
 
 #back {
@@ -38,9 +38,9 @@ body {
     display: block;
     top: 0px;
     left: 0px;
-    bottom: 0px;
     right: 0px;
     width: auto;
+    bottom: 0px;
     height: auto;
 }
 
@@ -54,18 +54,93 @@ body {
 
 #backDevelopedWith {
     position: absolute;
-    top: 67px;
-    left: 65px;
     width: 150px;
     height: 49px;
-    margin-left: auto;
+    top: 29px;
+    left: 65px;
     margin-right: auto;
 }
 
-#indicator {
+#list {
+    overflow: hidden;
+    display: none;
+    padding: 0px;
+    margin-top: 0px;
     position: absolute;
-    height: 48px;
-    left: 116px;
-    top: 166px;
-    width: 48px;
+    right: auto;
+    bottom: auto;
+    width: 229px;
+    left: 25px;
+    top: 29px;
+}
+
+.listRowTemplate_template {
+    position: relative;
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-color: rgb(224, 224, 224);
+    -webkit-border-top-left-radius: 0px 0px;
+    -webkit-border-top-right-radius: 0px 0px;
+    -webkit-border-bottom-left-radius: 0px 0px;
+    -webkit-border-bottom-right-radius: 0px 0px;
+    opacity: 1;
+    min-height: 24px;
+    height: auto;
+}
+
+.label_template {
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    height: 17px;
+    right: 10px;
+    width: auto;
+    color: black;
+    font-family: 'Helvetica Neue';
+    font-weight: bold;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#front {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: auto;
+    min-height: 0px;
+    height: auto;
+}
+
+#iSeptaUrlLabel {
+    font-size: 10pt;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: absolute;
+    margin-top: 0px;
+    font-weight: bold;
+    font-family: 'Helvetica Neue';
+    color: rgb(208, 208, 208);
+    left: 25px;
+    top: 100px;
+    right: 186px;
+    width: auto;
+    bottom: 64px;
+    height: auto;
+}
+
+#iSeptaUrl {
+    position: absolute;
+    color: black;
+    font-family: HelveticaNeue;
+    font-size: 10pt;
+    top: 95px;
+    left: 101px;
+    width: 145px;
 }

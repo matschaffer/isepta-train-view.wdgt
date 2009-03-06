@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AllowFileAccessOutsideOfWidget</key>
+	<true/>
 	<key>AllowNetworkAccess</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -21,7 +23,7 @@
 	<key>CloseBoxInsetY</key>
 	<integer>15</integer>
 	<key>Height</key>
-	<integer>380</integer>
+	<integer>180</integer>
 	<key>MainHTML</key>
 	<string>main.html</string>
 	<key>Width</key>

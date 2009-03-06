@@ -1,8 +1,26 @@
-function findTrain(number) {
-    var trainNumber = 4676;
-    $.get("http://trainview.septa.org/", function(data) {
-        var numberCells = $(data).find("#train_table td").grep(function
-        console.log(data.substr(0, 2));
+function showTrains(e, statuses) {
+    $.get($("#iSeptaUrl").val(), function(response) {
+        var trains = [];
+        $.each($(response).find("ol li a"), function() {
+            var number = $(this).attr('href').match(/trains\/(\d+)/)[1];
+            trains.push($(this).html() + " -- " + statuses[number]);
+        });
+        document.getElementById("list").object.setDataArray(trains);
     });
-    document.getElementById("indicator").object.setValue(10);
+}
+
+function loadStatuses() {
+    $.get("http://trainview.septa.org", function(response) {
+        var statuses = {};
+        //console.log($(response).find("#train_table tr:not(.subhead)").html());
+        $.each($(response).find("#train_table tr:not(.subhead)"), function() {
+            var numberCell = $(this).find("td[align=left]").html();
+            if (numberCell) {
+                var number = numberCell.replace('&nbsp;', '');
+                var status = $(this).attr('class').replace('train_', '');
+                statuses[number] = status;
+            }
+        });
+        $(document).trigger('statusesLoaded', statuses);
+    });
 }

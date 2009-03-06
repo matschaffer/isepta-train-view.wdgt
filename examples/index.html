@@ -1,0 +1,269 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Train View</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="JavaScript" type="text/JavaScript">function mmLoadMenus() {
+  if (window.mm_menu_0223140957_0) return;
+    window.mm_menu_0223140957_0 = new Menu("root",146,16,"Arial, Helvetica, sans-serif",10,"#FFFFFF","#FFFFFF","#6699FF","#0066CC","left","middle",3,0,1000,-5,7,true,true,true,0,true,true);
+  mm_menu_0223140957_0.addMenuItem("Accessible SEPTA","window.open('http://www.septa.org/service/accessible_septa.html', '_self');");
+  mm_menu_0223140957_0.addMenuItem("Bus","window.open('http://www.septa.org/service/bus_schedules_split.html', '_self');");
+  mm_menu_0223140957_0.addMenuItem("Subway & Trolley","window.open('http://www.septa.org/service/sub_schedules.html', '_self');");
+  mm_menu_0223140957_0.addMenuItem("Regional Rail","window.open('http://www.septa.org/service/rr_schedules.html', '_self');");
+  mm_menu_0223140957_0.addMenuItem("CCT Connect","window.open('http://www.septa.org/service/cct_connect.html', '_self');");
+  mm_menu_0223140957_0.addMenuItem("Ride Guide","window.open('http://www.septa.org/service/rideguide.html', '_self');");
+  mm_menu_0223140957_0.addMenuItem("Service&nbsp;Guarantee","window.open('http://www.septa.org/service/service_guarantee.html', '_self');");
+  mm_menu_0223140957_0.addMenuItem("Parking","window.open('http://www.septa.org/service/parking.html', '_self');");
+  mm_menu_0223140957_0.addMenuItem("Bike&nbsp;&&nbsp;Ride","window.open('http://www.septa.org/service/bike_ride.html', '_self');");
+  mm_menu_0223140957_0.addMenuItem("Connecting&nbsp;Service","window.open('http://www.septa.org/service/connecting_service.html', '_self');");
+   mm_menu_0223140957_0.fontWeight="bold";
+   mm_menu_0223140957_0.hideOnMouseOut=true;
+   mm_menu_0223140957_0.bgColor='#FFFFFF';
+   mm_menu_0223140957_0.menuBorder=1;
+   mm_menu_0223140957_0.menuLiteBgColor='#FFFFFF';
+   mm_menu_0223140957_0.menuBorderBgColor='#FFFFFF';
+
+mm_menu_0223140957_0.writeMenus();
+} // mmLoadMenus()
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+.links {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	color: #3366CC;
+	text-decoration: none;
+}
+
+* {
+  font-family:verdana;
+}
+
+#train_table {
+ zfont-size: 0.75em;
+}
+
+#train_table tr:nth-child(odd).train_ontime {
+ background-color:#F0F0F0;
+}
+
+.train_notice {
+ color:#FF0000;
+ font-size: 1.0em;
+ font-weight: bold;
+}
+
+.train_suspend {
+ background-color:#F06060;
+ font-size: 0.75em;
+}
+
+.train_late {
+ background-color:#FFF799;
+ font-size: 0.75em;
+}
+
+.train_ontime {
+ font-size: 0.75em;
+}
+
+.body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #000000;
+}
+
+.head {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: normal;
+	text-transform: none;
+	color: #333399;
+}
+.subhead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: normal;
+	text-transform: none;
+	color: #333399;
+	background-color: #f15930;
+}
+.lastupdated {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.85em;
+	font-style: normal;
+ 	text-align: right;
+	zcolor: #333399;
+ 	color: #000000;
+	background-color: #ffffff;
+}
+-->
+</style>
+<script language="JavaScript" src="mm_menu.js"></script>
+</head>
+
+<body topmargin="0" onLoad="MM_preloadImages('slices/train_view_serv_sched_2.jpg','slices/train_view_fares_2.jpg','slices/train_view_plan_trip_2.jpg','slices/train_view_maps_2.jpg','slices/contactusnew2.jpg')">
+<script language="JavaScript1.2">mmLoadMenus();</script>
+<div align="center"> 
+  <table width="760" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td height="83" colspan="6"><a href="http://www.septa.org/"><img src="slices/train_view_top.jpg" alt="SEPTA Logo" width="760" height="83" border="0"></a></td>
+    </tr>
+    <tr> 
+      <td width="137" height="47"><img src="slices/train_view_left.jpg" width="137" height="47"></td>
+      <td width="198" height="47"><a href="http://www.septa.org/service.html" onMouseOut="MM_swapImgRestore();MM_startTimeout();" onMouseOver="MM_swapImage('servandsched','','slices/train_view_serv_sched_2.jpg',1);MM_showMenu(window.mm_menu_0223140957_0,0,47,null,'servandsched')"><img src="slices/train_view_serv_sched.jpg" alt="Service and Schedules" name="servandsched" width="198" height="47" border="0"></a></td>
+      <td width="78" height="47"><a href="http://www.septa.org/fares.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('fares','','slices/train_view_fares_2.jpg',1)"><img src="slices/train_view_fares.jpg" alt="Fares" name="fares" width="78" height="47" border="0"></a></td>
+      <td width="132" height="47"><a href="http://airs.septa.org/bin/query.exe/en?" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('plantrip','','slices/train_view_plan_trip_2.jpg',1)"><img src="slices/train_view_plan_trip.jpg" alt="Plan My Trip" name="plantrip" width="132" height="47" border="0"></a></td>
+      <td width="76" height="47"><a href="http://www.septa.org/maps.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('maps','','slices/train_view_maps_2.jpg',1)"><img src="slices/train_view_maps.jpg" alt="Maps" name="maps" width="76" height="47" border="0"></a></td>
+      <td width="139" height="47"><img src="slices/train_view_right.jpg" width="139" height="47"></td>
+    </tr>
+    <tr> 
+      <td height="80" colspan="6"><img src="slices/train_view_bottom.jpg" alt="Train View" width="760" height="80"></td>
+    </tr>
+    <tr> 
+      <td class="train_notice" align="center" colspan="6"></td>
+    </tr>
+    <tr class="lastupdated">
+      <td class="lastupdated" align="right" colspan="6">Updated: 5:27pm</td>
+    </tr>
+    <tr> 
+      <td colspan="6" bgcolor="#CCCCCC">
+
+<TABLE id="train_table" border="0" align="CENTER" bgcolor="#e6e6e6" width="100%" cellpadding="1" cellspacing="0">
+<!--without line path too -->
+  <TR class="subhead">
+    <TD width=35% valign="top"><font color="white">Origination</font></TD>
+    <TD width=10% align="left" valign="top"><font color="white">Train #</font></TD>
+    <TD width=35% align="right" valign="top" colspan=1><font color="white">Destination</font></TD>
+    <TD width=20% align="right" valign="top" colspan=1><font color="white">Status</font></TD>
+  </TR>
+  <tr class="train_ontime"><td class="traindata">Wilmington<td align="left">&nbsp;0248<td align="right">Warminster<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">West Trenton<td align="left">&nbsp;363<td align="right">Media<td align="right">1 min
+<tr class="train_late"><td class="traindata">West Trenton<td align="left">&nbsp;369<td align="right">Elwyn<td align="right">14 mins
+<tr class="train_ontime"><td class="traindata">West Trenton<td align="left">&nbsp;371<td align="right">Elwyn<td align="right">2 mins
+<tr class="train_ontime"><td class="traindata">Elwyn<td align="left">&nbsp;376<td align="right">West Trenton<td align="right">4 mins
+<tr class="train_ontime"><td class="traindata">Elwyn<td align="left">&nbsp;384<td align="right">West Trenton<td align="right">1 min
+<tr class="train_ontime"><td class="traindata">Warminster<td align="left">&nbsp;4151<td align="right">Airport<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Fox Chase<td align="left">&nbsp;4153<td align="right">Airport<td align="right">On-time
+<tr class="train_late"><td class="traindata">Lansdale<td align="left">&nbsp;4253<td align="right">Marcus Hook<td align="right">7 mins
+<tr class="train_late"><td class="traindata">Chestnut Hill East<td align="left">&nbsp;4361<td align="right">Elwyn<td align="right">8 mins
+<tr class="train_ontime"><td class="traindata">Norristown<td align="left">&nbsp;4367<td align="right">Elwyn<td align="right">On-time
+<tr class="train_late"><td class="traindata">Marcus Hook<td align="left">&nbsp;4372<td align="right">West Trenton<td align="right">11 mins
+<tr class="train_ontime"><td class="traindata">Airport<td align="left">&nbsp;4382<td align="right">West Trenton<td align="right">1 min
+<tr class="train_ontime"><td class="traindata">Trenton<td align="left">&nbsp;4650<td align="right">Norristown<td align="right">On-time
+<tr class="train_late"><td class="traindata">Fox Chase<td align="left">&nbsp;4749<td align="right">Trenton<td align="right">11 mins
+<tr class="train_ontime"><td class="traindata">Airport<td align="left">&nbsp;4756<td align="right">Chestnut Hill East<td align="right">2 mins
+<tr class="train_late"><td class="traindata">Newark<td align="left">&nbsp;4760<td align="right">Chestnut Hill East<td align="right">21 mins
+<tr class="train_late"><td class="traindata">Norristown<td align="left">&nbsp;4843<td align="right">Chestnut Hill West<td align="right">10 mins
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;5251<td align="right">Newark De<td align="right">3 mins
+<tr class="train_late"><td class="traindata">Doylestown<td align="left">&nbsp;553<td align="right">Thorndale<td align="right">6 mins
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;5561<td align="right">Thorndale<td align="right">On-time
+<tr class="train_late"><td class="traindata">Doylestown<td align="left">&nbsp;567<td align="right">Malvern<td align="right">7 mins
+<tr class="train_ontime"><td class="traindata">Lansdale<td align="left">&nbsp;573<td align="right">Bryn Mawr<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Malvern<td align="left">&nbsp;574<td align="right">Lansdale<td align="right">5 mins
+<tr class="train_late"><td class="traindata">Temple U<td align="left">&nbsp;5745<td align="right">Trenton<td align="right">6 mins
+<tr class="train_ontime"><td class="traindata">Thorndale<td align="left">&nbsp;578<td align="right">Lansdale<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Thorndale<td align="left">&nbsp;580<td align="right">Lansdale<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Malvern<td align="left">&nbsp;582<td align="right">Lansdale<td align="right">2 mins
+<tr class="train_ontime"><td class="traindata">30th St<td align="left">&nbsp;6246<td align="right">Warminster<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">30th St<td align="left">&nbsp;6374<td align="right">West Trenton<td align="right">2 mins
+<tr class="train_ontime"><td class="traindata">30th St<td align="left">&nbsp;6378<td align="right">West Trenton<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">30th St<td align="left">&nbsp;6380<td align="right">West Trenton<td align="right">1 min
+<tr class="train_ontime"><td class="traindata">30th St<td align="left">&nbsp;6572<td align="right">Doylestown<td align="right">1 min
+<tr class="train_ontime"><td class="traindata">30th St<td align="left">&nbsp;6576<td align="right">Doylestown<td align="right">1 min
+<tr class="train_late"><td class="traindata">30th St<td align="left">&nbsp;6596<td align="right">Doylestown<td align="right">7 mins
+<tr class="train_ontime"><td class="traindata">30th St<td align="left">&nbsp;6598<td align="right">Doylestown<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">30th St<td align="left">&nbsp;6652<td align="right">Norristown<td align="right">1 min
+<tr class="train_ontime"><td class="traindata">30th St<td align="left">&nbsp;6848<td align="right">Fox Chase<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Chestnut Hill East<td align="left">&nbsp;751<td align="right">Trenton<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Trenton<td align="left">&nbsp;758<td align="right">Chestnut Hill East<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Cynwyd<td align="left">&nbsp;7682<td align="right">Suburban Station<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Suburban Station<td align="left">&nbsp;7683<td align="right">Cynwyd<td align="right">2 mins
+<tr class="train_ontime"><td class="traindata">Chestnut Hill West<td align="left">&nbsp;846<td align="right">Fox Chase<td align="right">1 min
+<tr class="train_ontime"><td class="traindata">Chestnut Hill West<td align="left">&nbsp;850<td align="right">Fox Chase<td align="right">4 mins
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;9243<td align="right">Newark De<td align="right">3 mins
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;9249<td align="right">Claymont<td align="right">2 mins
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;9257<td align="right">Newark De<td align="right">On-time
+<tr class="train_late"><td class="traindata">Temple U<td align="left">&nbsp;9359<td align="right">Elwyn<td align="right">15 mins
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;9365<td align="right">Elwyn<td align="right">4 mins
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;9559<td align="right">Paoli<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;9563<td align="right">Bryn Mawr<td align="right">2 mins
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;9747<td align="right">Trenton<td align="right">3 mins
+<tr class="train_ontime"><td class="traindata">Trenton<td align="left">&nbsp;9756<td align="right">Temple U<td align="right">On-time
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;9791<td align="right">Trenton<td align="right">1 min
+<tr class="train_ontime"><td class="traindata">Temple U<td align="left">&nbsp;9841<td align="right">Chestnut Hill West<td align="right">2 mins
+<tr><td>&nbsp;</tr>
+</TABLE>
+
+
+
+
+     </td>
+    </tr>
+    <tr> 
+      <td height="24" colspan="3">
+       <div align="right" class=body>To Learn More About <A href="http://www.septa.org/whatistrainview.html" target=_self><STRONG><EM>Train View</EM></STRONG></A></div>
+      </td>
+      <td height="24" colspan="3">
+       <div align="right"><a href="http://www.septa.org/contact_us.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('contact','','slices/contactusnew2.jpg',1)"><img src="slices/contactusnew.jpg" alt="Contact Us" name="contact" width="135" height="24" border="0"></a></div>
+      </td>
+    </tr>
+    <tr> 
+      <td height="50" colspan="6"> <div align="center" class="links"><a href="http://www.septa.org/service.html" class="links">Service 
+          &amp; Schedules</a> | <a href="http://www.septa.org/fares.html" class="links">Fares</a> 
+          | <a href="http://airs.septa.org/bin/query.exe/en?" class="links">Plan 
+          My Trip</a> | <a href="http://www.septa.org/maps.html" class="links">Maps</a> 
+          | <a href="http://www.septa.org/news.html" class="links">News</a> | 
+          <a href="http://www.septa.org/" class="links">Home</a><br>
+          <a href="http://www.septa.org/inside.html" class="links">Inside SEPTA</a> 
+          | <a href="http://autohire.careershop.com/septajobs/" class="links">Careers</a> 
+          | <a href="http://www.septa.org/business.html" class="links">Doing Business</a> 
+          | <a href="http://www.septa.org/store.html" class="links">Transit Store</a> 
+          | <a href="http://www.septa.org/disclaimer.html" class="links">Copyright 
+          2007, SEPTA</a> | <a href="http://www.septa.org/site_map.html" class="links">Site 
+          Map</a></div></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

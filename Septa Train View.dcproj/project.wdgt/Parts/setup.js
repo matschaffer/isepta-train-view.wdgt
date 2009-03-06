@@ -6,6 +6,8 @@
  */
 var dashcodePartSpecs = {
     "done": { "creationFunction": "CreateGlassButton", "onclick": "showFront", "text": "Done" },
-    "indicator": { "creationFunction": "CreateIndicator", "criticalValue": 15, "onValue": 1, "warningValue": 10 },
-    "info": { "backgroundStyle": "black", "creationFunction": "CreateInfoButton", "foregroundStyle": "white", "frontID": "front", "onclick": "showBack" }
+    "info": { "backgroundStyle": "black", "creationFunction": "CreateInfoButton", "foregroundStyle": "white", "frontID": "front", "onclick": "showBack" },
+    "iSeptaUrlLabel": { "creationFunction": "CreateText", "text": "iSepta URL" },
+    "label": { "creationFunction": "CreateText", "text": "Item" },
+    "list": { "creationFunction": "CreateList", "dataArray": ["Item 3"], "labelElementId": "label", "listStyle": "List.EDGE_TO_EDGE", "sampleRows": 1, "useDataSource": true }
 };
