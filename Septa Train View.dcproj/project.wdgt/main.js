@@ -11,10 +11,7 @@
 function load()
 {
     dashcode.setupParts();
-    $("#iSeptaUrl").val("http://isepta.org/rr/start/8/end/111/now/trains");
     $(document).bind('statusesLoaded', showTrains);
-    setInterval(loadStatuses, 10 * 1000);
-    loadStatuses();
 }
 
 //
@@ -91,6 +88,8 @@ function showBack(event)
 //
 function showFront(event)
 {
+    loadStatuses();
+
     var front = document.getElementById("front");
     var back = document.getElementById("back");
 

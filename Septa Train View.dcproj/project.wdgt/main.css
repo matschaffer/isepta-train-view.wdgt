@@ -92,6 +92,7 @@ body {
     opacity: 1;
     min-height: 24px;
     height: auto;
+    color: rgb(255, 255, 255);
 }
 
 .label_template {
@@ -101,13 +102,13 @@ body {
     height: 17px;
     right: 10px;
     width: auto;
-    color: black;
     font-family: 'Helvetica Neue';
     font-weight: bold;
     font-size: 13px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    color: rgb(255, 255, 255);
 }
 
 #front {
