@@ -11,7 +11,17 @@
 function load()
 {
     dashcode.setupParts();
+
     $(document).bind('statusesLoaded', showTrains);
+
+    var iSeptaUrl = widget.preferenceForKey(widget.identifier + "-iSeptaUrl");
+
+    if (iSeptaUrl) {
+        $('#iSeptaUrl').val(iSeptaUrl);
+        loadStatuses();
+    } else {
+        showBack();
+    }
 }
 
 //
@@ -31,7 +41,7 @@ function remove()
 //
 function hide()
 {
-    // Stop any timers to prevent CPU usage
+    setRefreshInterval(5 * 60);
 }
 
 //
@@ -40,7 +50,8 @@ function hide()
 //
 function show()
 {
-    // Restart any timers that were stopped on hide
+    loadStatuses();
+    setRefreshInterval(10);
 }
 
 //
@@ -88,6 +99,8 @@ function showBack(event)
 //
 function showFront(event)
 {
+    widget.setPreferenceForKey($('#iSeptaUrl').val(), widget.identifier + "-iSeptaUrl");
+
     loadStatuses();
 
     var front = document.getElementById("front");

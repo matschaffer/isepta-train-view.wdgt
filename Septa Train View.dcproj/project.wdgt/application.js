@@ -1,13 +1,24 @@
+
+var availableBackgrounds = ['r3', 'r6', 'r7'];
+
 function setTrainLine(name) {
-    $('#frontImg').attr('src', 'Backgrounds/' + name.toLowerCase() + '.png');
+    if ($.inArray(name.toLowerCase(), availableBackgrounds) != -1) {
+        $('#frontImg').attr('src', 'Backgrounds/' + name.toLowerCase() + '.png');
+    } else {
+        $('#frontImg').attr('src', 'Images/front.png');
+    }
+    $('#nextTrainLabel').html(name);
 }
 
 function renderLine(iSeptaLine, status) {
-    return $(iSeptaLine).html() + " -- " + status;
+    var line = $(iSeptaLine).find('span.num').html() + " departs " + $(iSeptaLine).find('.d-time').html();
+    if (status) {
+        line += " – " + status;
+    }
+    return line;
 }
 
 function showTrains(e, statuses) {
-    $('#iSeptaUrl').val('file:///Users/schapht/workspace/septatrainview/examples/trains');
     $.get($('#iSeptaUrl').val(), function(response) {
         var listings = $(response).find("ol li a");
 
@@ -22,16 +33,34 @@ function showTrains(e, statuses) {
 }
 
 function loadStatuses() {
-    $.get("file:///Users/schapht/workspace/septatrainview/examples/index.html", function(response) {
-        var statuses = {};
-        $.each($(response).find("#train_table tr:not(.subhead)"), function() {
-            var numberCell = $(this).find("td[align=left]").html();
-            if (numberCell) {
-                var number = numberCell.replace('&nbsp;', '');
-                var status = $(this).attr('class').replace('train_', '');
-                statuses[number] = status;
-            }
+    if ($('#iSeptaUrl').val().length > 0) {
+        $.get("http://trainview.septa.org", function(response) {
+            var statuses = {};
+            $.each($(response).find("#train_table tr:not(.subhead)"), function() {
+                var numberCell = $(this).find("td[align=left]").html();
+                var timeCell = $(this).find("td[align=right]:last").html();
+                if (numberCell && timeCell) {
+                    var number = numberCell.replace('&nbsp;', '');
+                    var time = timeCell.replace("\n", '');
+                    if (time.match(/\d/)) {
+                        time += " late";
+                    }
+                    statuses[number] = time;
+                }
+            });
+            $(document).trigger('statusesLoaded', statuses);
         });
-        $(document).trigger('statusesLoaded', statuses);
-    });
+    }
+}
+
+function openISepta() {
+    widget.openURL('http://isepta.org');
+}
+
+var refreshInterval;
+
+function setRefreshInterval(seconds) {
+    console.debug("Set refresh interval to " + seconds + " seconds");
+    clearInterval(refreshInterval);
+    setInterval(loadStatuses, seconds * 1000);
 }

@@ -7,7 +7,10 @@
 var dashcodePartSpecs = {
     "done": { "creationFunction": "CreateGlassButton", "onclick": "showFront", "text": "Done" },
     "info": { "backgroundStyle": "black", "creationFunction": "CreateInfoButton", "foregroundStyle": "white", "frontID": "front", "onclick": "showBack" },
-    "iSeptaUrlLabel": { "creationFunction": "CreateText", "text": "iSepta URL" },
+    "iSeptaLabel": { "creationFunction": "CreateText", "text": "iSepta" },
+    "iSeptaUrlLabel": { "creationFunction": "CreateText", "text": "Go get an iSepta - Trains page and put it here ⤵" },
     "label": { "creationFunction": "CreateText", "text": "Item" },
-    "list": { "creationFunction": "CreateList", "dataArray": ["Item 3"], "labelElementId": "label", "listStyle": "List.EDGE_TO_EDGE", "sampleRows": 1, "useDataSource": true }
+    "list": { "creationFunction": "CreateList", "dataArray": ["Item 3"], "labelElementId": "label", "listStyle": "List.EDGE_TO_EDGE", "sampleRows": 1, "useDataSource": true },
+    "nextTrainLabel": { "creationFunction": "CreateText", "text": "Loading…" },
+    "poweredByLabel": { "creationFunction": "CreateText", "text": "Powered by" }
 };
