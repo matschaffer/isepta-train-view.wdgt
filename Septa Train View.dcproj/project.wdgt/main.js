@@ -41,7 +41,7 @@ function remove()
 //
 function hide()
 {
-    setRefreshInterval(5 * 60);
+    setRefreshInterval(20 * 60);
 }
 
 //
