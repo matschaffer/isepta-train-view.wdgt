@@ -1,7 +1,6 @@
-
-var availableBackgrounds = ['r3', 'r6', 'r7'];
-
 function setTrainLine(name) {
+    var availableBackgrounds = ['r1', 'r2', 'r3', 'r5', 'r6', 'r7', 'r8'];
+
     if ($.inArray(name.toLowerCase(), availableBackgrounds) != -1) {
         $('#frontImg').attr('src', 'Backgrounds/' + name.toLowerCase() + '.png');
     } else {
