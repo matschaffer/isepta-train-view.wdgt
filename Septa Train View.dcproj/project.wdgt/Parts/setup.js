@@ -6,6 +6,7 @@
  */
 var dashcodePartSpecs = {
     "done": { "creationFunction": "CreateGlassButton", "onclick": "showFront", "text": "Done" },
+    "error": { "creationFunction": "CreateText", "text": "Unable to load data.  Please ensure that you're using a valid iSepta Trains URL and that your network connection is active." },
     "info": { "backgroundStyle": "black", "creationFunction": "CreateInfoButton", "foregroundStyle": "white", "frontID": "front", "onclick": "showBack" },
     "iSeptaLabel": { "creationFunction": "CreateText", "text": "iSepta" },
     "iSeptaUrlLabel": { "creationFunction": "CreateText", "text": "Go get an iSepta - Trains page and put it here ⤵" },

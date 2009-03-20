@@ -11,17 +11,7 @@
 function load()
 {
     dashcode.setupParts();
-
-    $(document).bind('statusesLoaded', showTrains);
-
-    var iSeptaUrl = widget.preferenceForKey(widget.identifier + "-iSeptaUrl");
-
-    if (iSeptaUrl) {
-        $('#iSeptaUrl').val(iSeptaUrl);
-        loadStatuses();
-    } else {
-        showBack();
-    }
+    setup();
 }
 
 //

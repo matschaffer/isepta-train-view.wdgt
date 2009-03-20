@@ -165,7 +165,7 @@ body {
     font-size: 34pt;
     text-align: right;
     z-index: 200;
-    color: rgba(238, 238, 238, 0.199219);
+    color: rgba(238, 238, 238, 0.195312);
 }
 
 #iSeptaLabel {
@@ -200,4 +200,21 @@ body {
     width: auto;
     bottom: 139px;
     height: auto;
+}
+
+#error {
+    display: none;
+    color: black;
+    font-size: 10pt;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: absolute;
+    margin-top: 0px;
+    top: 29px;
+    left: 32px;
+    right: 45px;
+    width: auto;
+    height: auto;
+    font-style: italic;
+    font-family: 'Helvetica Neue';
 }
