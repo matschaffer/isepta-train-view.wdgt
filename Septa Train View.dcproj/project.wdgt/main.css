@@ -68,8 +68,7 @@ body {
     -khtml-margin-top-collapse: separate;
     -khtml-margin-bottom-collapse: separate;
     margin-top: 25px;
-    margin-right: 30px;
-    float: right;
+    margin-left: 25px;
     z-index: 100;
 }
 
