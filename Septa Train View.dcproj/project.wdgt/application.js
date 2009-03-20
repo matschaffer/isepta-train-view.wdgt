@@ -6,7 +6,7 @@ function setTrainLine(name) {
     } else {
         $('#frontImg').attr('src', 'Images/front.png');
     }
-    $('#nextTrainLabel').html(name);
+    $('#nextTrainLabel').html('Next: ' + name);
 }
 
 function renderLine(iSeptaLine, status) {
