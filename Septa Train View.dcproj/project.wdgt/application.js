@@ -3,7 +3,7 @@ var listDisplayed = false;
 function setup() {
     $(document).bind('statusesLoaded', showTrains);
 
-    jQuery.ajaxSettings.timeout = 10 * 1000 ;
+    $.ajaxSettings.timeout = 10 * 1000 ;
 
     $().ajaxError(function() {
         if (!listDisplayed) {
