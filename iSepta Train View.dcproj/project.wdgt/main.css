@@ -17,6 +17,10 @@ body {
     width: auto;
     bottom: 0px;
     height: auto;
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Helvetica Neue';
+    font-size: 10pt;
 }
 
 #info {
@@ -164,7 +168,7 @@ body {
     font-size: 34pt;
     text-align: right;
     z-index: 200;
-    color: rgba(238, 238, 238, 0.195312);
+    color: rgba(238, 238, 238, 0.191406);
 }
 
 #iSeptaLabel {

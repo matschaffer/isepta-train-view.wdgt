@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AppIconImageSettings</key>
+	<string>image-theme: 2; image-shape: 3; image-opacity: 1.00; image-top-color: 0,0.58431375,0.431372553,1; image-bottom-color: 0,0.58431375,0.431372553,1; image-radius: 21,21,21,21; image-border: 0; image-border-color: 0.529399991,0.529399991,0.529399991,1; image-border-width: 1; shine-on: 1; shine-strength: 0.13; shine-alpha-level: 0.67; shine-height: 0.50; glass-arc-height: 0.06; embossed-on: 0; embossed-depth: 5.6; embossed-shadow: 0.68; embossed-highlight: 0.3; image-include-custom: 1; image-custom-image-path: iconpiece.png; image-custom-center: 1; image-custom-resize: 2; shadow-include-shadow: 0;</string>
 	<key>CYBackwardCompatibleExport</key>
 	<false/>
 	<key>CYProjectFormatVersion</key>
