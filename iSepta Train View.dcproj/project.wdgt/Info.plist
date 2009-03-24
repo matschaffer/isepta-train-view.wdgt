@@ -11,7 +11,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Septa Train View</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.schapht.widget.Septa Train View</string>
+	<string>com.schapht.widget.iSepta Train View</string>
 	<key>CFBundleName</key>
 	<string>Septa Train View</string>
 	<key>CFBundleShortVersionString</key>
