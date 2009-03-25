@@ -159,7 +159,7 @@ body {
     font-size: 34pt;
     text-align: right;
     z-index: 200;
-    color: rgba(238, 238, 238, 0.1875);
+    color: rgba(238, 238, 238, 0.167969);
 }
 
 #iSeptaLabel {
@@ -172,11 +172,11 @@ body {
     font-weight: bold;
     font-family: 'Helvetica Neue';
     text-overflow: ellipsis;
-    top: 41px;
     left: 101px;
+    top: 38px;
     right: 105px;
     width: auto;
-    bottom: 109px;
+    bottom: 112px;
     height: auto;
 }
 
@@ -198,17 +198,35 @@ body {
 
 #error {
     display: none;
-    color: black;
-    font-size: 10pt;
     text-overflow: ellipsis;
     overflow: hidden;
     position: absolute;
     margin-top: 0px;
-    top: 29px;
     left: 32px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Helvetica Neue';
+    top: 25px;
     right: 45px;
     width: auto;
     height: auto;
-    font-style: italic;
-    font-family: 'Helvetica Neue';
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(0, 0, 0) 1px 1px 3px;
+    font-size: 15px;
+}
+
+#text {
+    font-family: HelveticaNeue;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: absolute;
+    margin-top: 0px;
+    left: 26px;
+    color: rgb(255, 255, 255);
+    font-size: 8pt;
+    top: 141px;
+    right: 140px;
+    width: auto;
+    bottom: 27px;
+    height: auto;
 }

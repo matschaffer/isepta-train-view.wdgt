@@ -6,12 +6,13 @@
  */
 var dashcodePartSpecs = {
     "done": { "creationFunction": "CreateGlassButton", "onclick": "showFront", "text": "Done" },
-    "error": { "creationFunction": "CreateText", "text": "Unable to load data.  Please ensure that you're using a valid iSepta Trains URL and that your network connection is active." },
+    "error": { "creationFunction": "CreateText", "text": "Something's broken.\n\nAre you online?\n\nIf you are, double check the link on the back. Thanks!" },
     "info": { "backgroundStyle": "black", "creationFunction": "CreateInfoButton", "foregroundStyle": "white", "frontID": "front", "onclick": "showBack" },
     "iSeptaLabel": { "creationFunction": "CreateText", "text": "iSepta" },
     "iSeptaUrlLabel": { "creationFunction": "CreateText", "text": "Go get an iSepta - Trains page and put it here ⤵" },
     "label": { "creationFunction": "CreateText", "text": "Item" },
     "list": { "creationFunction": "CreateList", "dataArray": ["Item 3"], "labelElementId": "label", "listStyle": "List.EDGE_TO_EDGE", "sampleRows": 1, "useDataSource": true },
     "nextTrainLabel": { "creationFunction": "CreateText", "text": "Loading…" },
-    "poweredByLabel": { "creationFunction": "CreateText", "text": "Powered by" }
+    "poweredByLabel": { "creationFunction": "CreateText", "text": "Powered by" },
+    "text": { "creationFunction": "CreateText", "text": "widget by Mat Schaffer" }
 };

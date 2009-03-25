@@ -14,11 +14,9 @@ function setup() {
     });
 
     $().ajaxSuccess(function() {
-        if (!listDisplayed) {
-            $('#list').show();
-            $('#nextTrainLabel').show();
-            $('#error').hide();
-        }
+        $('#list').show();
+        $('#nextTrainLabel').show();
+        $('#error').hide();
     });
 
     var iSeptaUrl = widget.preferenceForKey(widget.identifier + "-iSeptaUrl");
@@ -87,11 +85,17 @@ function loadStatuses() {
             });
             $(document).trigger('statusesLoaded', statuses);
         });
+    } else {
+        $().trigger('ajaxError');
     }
 }
 
 function openISepta() {
     widget.openURL('http://isepta.org');
+}
+
+function openMatschafferDotCom() {
+    widget.openURL('http://matschaffer.com');
 }
 
 var refreshInterval;
