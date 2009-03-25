@@ -56,15 +56,6 @@ body {
     margin-top: auto;
 }
 
-#backDevelopedWith {
-    position: absolute;
-    left: 25px;
-    top: 25px;
-    width: 120px;
-    height: 39px;
-    margin-right: auto;
-}
-
 #list {
     overflow: hidden;
     display: none;
@@ -168,7 +159,7 @@ body {
     font-size: 34pt;
     text-align: right;
     z-index: 200;
-    color: rgba(238, 238, 238, 0.191406);
+    color: rgba(238, 238, 238, 0.1875);
 }
 
 #iSeptaLabel {
@@ -181,11 +172,11 @@ body {
     font-weight: bold;
     font-family: 'Helvetica Neue';
     text-overflow: ellipsis;
-    left: 167px;
-    top: 36px;
-    right: 39px;
+    top: 41px;
+    left: 101px;
+    right: 105px;
     width: auto;
-    bottom: 114px;
+    bottom: 109px;
     height: auto;
 }
 
@@ -197,11 +188,11 @@ body {
     margin-top: 0px;
     color: rgb(238, 238, 238);
     font-size: 9pt;
-    left: 172px;
-    top: 27px;
-    right: 45px;
+    left: 106px;
+    top: 26px;
+    right: 111px;
     width: auto;
-    bottom: 139px;
+    bottom: 140px;
     height: auto;
 }
 
