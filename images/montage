@@ -1,0 +1,3 @@
+#!/bin/sh
+
+montage -geometry +2+2 -tile 1x2 frontshot.png backshot.png screenshot.png
