@@ -100,8 +100,8 @@ function openMatschafferDotCom() {
 
 var refreshInterval;
 
-function setRefreshInterval(seconds) {
-    console.debug("Set refresh interval to " + seconds + " seconds");
+function setRefreshIntervalInMinutes(minutes) {
+    console.debug("Set refresh interval to " + minutes + " minutes");
     clearInterval(refreshInterval);
-    setInterval(loadStatuses, seconds * 1000);
+    setInterval(loadStatuses, minutes * 60 * 1000);
 }

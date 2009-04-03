@@ -31,7 +31,7 @@ function remove()
 //
 function hide()
 {
-    setRefreshInterval(20 * 60);
+    setRefreshIntervalInMinutes(30);
 }
 
 //
@@ -41,7 +41,7 @@ function hide()
 function show()
 {
     loadStatuses();
-    setRefreshInterval(10);
+    setRefreshIntervalInMinutes(0.5);
 }
 
 //
