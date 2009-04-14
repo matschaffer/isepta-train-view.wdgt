@@ -1,5 +1,5 @@
 Screw.Unit(function () {
-  describe('Train', function() {
+  describe('A Train', function() {
     before(function() {
       this.train = new Train(123, "R6", "8:51 AM");
     });
