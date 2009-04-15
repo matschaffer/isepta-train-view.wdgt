@@ -1,12 +1,8 @@
 Train = function(number, line, departure_time) {
+  console.debug("Creating train with number: " + number + " line: " + line + " departure_time: " + departure_time);
   this.number = number;
   this.line = line.toLowerCase();
   this.set_departure_time(departure_time);
-};
-
-Train.create_from_listing = function(listing) {
-  console.debug("Creating train from listing: " + listing);
-  return new Train();
 };
 
 Train.prototype = {
