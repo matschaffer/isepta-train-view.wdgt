@@ -1,7 +1,7 @@
 iSeptaAdapter = function(source) {
   this.source = source;
   this.trains = [];
-}
+};
 
 iSeptaAdapter.prototype = {
   load_trains: function() {
@@ -25,4 +25,4 @@ iSeptaAdapter.prototype = {
   find: function(number) {
     return $.grep(this.trains, function(train) { return train.number == number; } );
   }
-}
+};

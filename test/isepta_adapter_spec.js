@@ -1,13 +1,13 @@
 Screw.Unit(function () {
   describe('An iSeptaAdapter', function(me) {
     before(function() {
-      this.url = "../examples/trains"
+      this.url = "../examples/trains";
     });
 
     it("should return a collection of trains given an iSepta URL", function(me) {
       var adapter = new iSeptaAdapter(this.url);
       adapter.load_trains();
-      
+
       signal(me).when(adapter).triggers('loaded', function() {
         expect(adapter.trains.length).to(equal, 5);
       });
