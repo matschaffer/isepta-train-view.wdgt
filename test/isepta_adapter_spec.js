@@ -9,7 +9,9 @@ Screw.Unit(function () {
       adapter.load_trains();
 
       signal(me).when(adapter).triggers('loaded', function() {
-        expect(adapter.trains.length).to(equal, 5);
+        adapter.find_all(function(trains) {
+          expect(trains.length).to(equal, 5);
+        });
       });
     });
 
@@ -18,7 +20,9 @@ Screw.Unit(function () {
       adapter.load_trains();
 
       signal(me).when(adapter).triggers('loaded', function() {
-        expect(adapter.find('4656')).to_not(be_undefined);
+        adapter.find('4656', function(train) {
+          expect(train).to_not(be_undefined);
+        });
       });
     });
 
@@ -29,11 +33,23 @@ Screw.Unit(function () {
                            '  <span class="a-time"> 6:28 <small>PM</small></span>' +
                            '  <small class="rte"></small>' +
                            '</a>');
-      var adapter = new iSeptaAdapter();
-      var train = adapter.parse(html_listing);
+      var train = iSeptaAdapter.prototype.parse(html_listing);
       expect(train.number).to(equal, 4656);
       expect(train.line).to(equal, 'r6');
       expect(train.departure_time()).to(equal, '6:02 PM');
+    });
+    
+    it("should convert any weekday or weekend urls to a current url", function() {
+      var originalGet = $.get;
+        
+        $.get = function(url, callback) {
+          expect(url).to(equal, "http://isepta.org/rr/start/7/end/147/now/trains");
+        };
+        
+        var adapter = new iSeptaAdapter("http://isepta.org/rr/start/7/end/147/wk/trains");
+        adapter.load_trains();
+        
+      $.get = originalGet;
     });
   });
 });
