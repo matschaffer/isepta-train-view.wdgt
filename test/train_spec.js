@@ -11,9 +11,12 @@ Screw.Unit(function () {
     });
 
     it("should know if it has already departed", function() {
-      var train = new Train(123, "R6", (1).minute().ago().toString("h:mm tt"));
+      var train = new Train(123, "R6", (new Date()).previous().minute().toString("h:mm tt"));
       expect(train.departed()).to(equal, true);
-      train.set_departure_time((1).minute().fromNow().toString("h:mm tt"));
+    });
+
+    it("should know if it has not yet departed", function() {
+      var train = new Train(123, "R6", (new Date()).next().minute().toString("h:mm tt"));
       expect(train.departed()).to(equal, false);
     });
 
