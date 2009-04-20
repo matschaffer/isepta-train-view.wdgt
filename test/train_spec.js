@@ -20,9 +20,17 @@ Screw.Unit(function () {
       expect(train.departed()).to(equal, false);
     });
 
+    it("should account for status when reporting departed status", function() {
+      var train = new Train(123, "R6", (new Date()).previous().minute().toString("h:mm tt"));
+      train.set_status('3 mins');
+      expect(train.departed()).to(equal, false);
+    });
+
     it("should set status from trainview style string", function() {
       this.train.set_status("4 mins\n");
       expect(this.train.status).to(equal, "4 mins late");
+      this.train.set_status("On-time\n");
+      expect(this.train.status).to(equal, "On-time");
     });
   });
 });

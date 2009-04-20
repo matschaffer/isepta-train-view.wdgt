@@ -18,8 +18,12 @@ Train.prototype = {
   },
   set_status: function(status_string) {
     this.status = status_string.replace("\n", '');
-    if (this.status.match(/\d/)) {
-        this.status += " late";
+    var minutes = this.status.match(/\d/);
+    if (minutes) {
+      this.minutes_late = parseInt(minutes[1], 10);
+      this.status += " late";
+    } else {
+      this.minutes_late = 0;
     }
   }
 };
