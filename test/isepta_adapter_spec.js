@@ -40,16 +40,9 @@ Screw.Unit(function () {
     });
     
     it("should convert any weekday or weekend urls to a current url", function() {
-      var originalGet = $.get;
-        
-        $.get = function(url, callback) {
-          expect(url).to(equal, "http://isepta.org/rr/start/7/end/147/now/trains");
-        };
-        
-        var adapter = new iSeptaAdapter("http://isepta.org/rr/start/7/end/147/wk/trains");
-        adapter.load_trains();
-        
-      $.get = originalGet;
+      var weeklyUrl = "http://isepta.org/rr/start/7/end/147/wk/trains";
+      var currentUrl = "http://isepta.org/rr/start/7/end/147/now/trains";
+      expect(iSeptaAdapter.prototype.convert_url(weeklyUrl)).to(equal, currentUrl);
     });
   });
 });
