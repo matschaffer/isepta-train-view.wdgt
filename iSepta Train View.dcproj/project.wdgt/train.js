@@ -3,6 +3,7 @@ Train = function(number, line, departure_time) {
   this.number = number;
   this.line = line.toLowerCase();
   this.set_departure_time(departure_time);
+  this.minutes_late = 0;
 };
 
 Train.prototype = {
@@ -14,16 +15,15 @@ Train.prototype = {
     return this.departure_time_string;
   },
   departed: function() {
-    return this.departure_time_object < new Date();
+    var real_departure_time = this.departure_time_object.add(this.minutes_late).minutes();
+    return real_departure_time < new Date();
   },
   set_status: function(status_string) {
     this.status = status_string.replace("\n", '');
-    var minutes = this.status.match(/\d/);
+    var minutes = this.status.match(/\d+/);
     if (minutes) {
-      this.minutes_late = parseInt(minutes[1], 10);
+      this.minutes_late = parseInt(minutes[0], 10);
       this.status += " late";
-    } else {
-      this.minutes_late = 0;
     }
   }
 };
