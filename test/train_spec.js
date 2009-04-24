@@ -11,17 +11,17 @@ Screw.Unit(function () {
     });
 
     it("should know if it has already departed", function() {
-      var train = new Train(123, "R6", (new Date()).previous().minute().toString("h:mm tt"));
+      var train = new Train(123, "R6", (new Date()).previous().minute());
       expect(train.departed()).to(equal, true);
     });
 
     it("should know if it has not yet departed", function() {
-      var train = new Train(123, "R6", (new Date()).next().minute().toString("h:mm tt"));
+      var train = new Train(123, "R6", (new Date()).next().minute());
       expect(train.departed()).to(equal, false);
     });
 
     it("should account for status when reporting departed status", function() {
-      var train = new Train(123, "R6", (new Date()).previous().minute().toString("h:mm tt"));
+      var train = new Train(123, "R6", (new Date()).previous().minute());
       train.set_status('3 mins');
       expect(train.departed()).to(equal, false);
     });

@@ -6,7 +6,7 @@ Screw.Unit(function () {
         if (number == train.number) {
           callback(train);
         } else {
-          callback(new Train());
+          callback(new Train(1, 'rN', '12:00 PM'));
         }
       }};
       
