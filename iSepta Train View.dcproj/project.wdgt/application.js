@@ -1,9 +1,23 @@
 var listDisplayed = false;
 
-function setup() {
-    $(document).bind('statusesLoaded', showTrains);
+var isepta, trainview;
 
-    $.ajaxSettings.timeout = 10 * 1000 ;
+function setup() {
+    var mockiSepta = "file:///Users/schapht/workspace/isepta-train-view.wdgt/examples/trains";
+    var mockTrainView = "file:////Users/schapht/workspace/isepta-train-view.wdgt/examples/index.html";
+
+    isepta = new iSeptaAdapter('');
+    trainview = new TrainViewAdapter("http://trainview.septa.org", isepta);
+
+    $(trainview).bind('loaded', showTrains);
+
+    setupjQuery();
+    loadPreferences();
+}
+
+function setupjQuery() {
+    $.ajaxSettings.timeout = 10 * 1000;
+    $.ajaxSettings.cache = true;
 
     $().ajaxError(function() {
         if (!listDisplayed) {
@@ -18,12 +32,15 @@ function setup() {
         $('#nextTrainLabel').show();
         $('#error').hide();
     });
+}
 
+function loadPreferences() {
     var iSeptaUrl = widget.preferenceForKey(widget.identifier + "-iSeptaUrl");
 
-    if (iSeptaUrl) {
+    if (iSeptaUrl && iSeptaUrl.length > 0) {
         $('#iSeptaUrl').val(iSeptaUrl);
-        loadStatuses();
+        isepta.set_source(iSeptaUrl);
+        trainview.refresh();
         setRefreshIntervalInMinutes(10);
     } else {
         showBack();
@@ -34,60 +51,22 @@ function setTrainLine(name) {
     var availableBackgrounds = ['r1', 'r2', 'r3', 'r5', 'r6', 'r7', 'r8'];
 
     if ($.inArray(name.toLowerCase(), availableBackgrounds) != -1) {
-        $('#frontImg').attr('src', 'Backgrounds/' + name.toLowerCase() + '.png');
+        $('#frontImg').attr('src', 'Backgrounds/' + name + '.png');
     } else {
         $('#frontImg').attr('src', 'Images/front.png');
     }
-    $('#nextTrainLabel').html('Next: ' + name);
-}
-
-function renderLine(iSeptaLine, status) {
-    var line = $(iSeptaLine).find('span.num').html() + " departs " + $(iSeptaLine).find('.d-time').html();
-    if (status) {
-        line += " – " + status;
-    }
-    return line;
+    $('#nextTrainLabel').html('Next: ' + name.toUpperCase());
 }
 
 function showTrains(e, statuses) {
-    console.log('Loading trains');
-    $.get($('#iSeptaUrl').val(), function(response) {
-        var listings = $(response).find("ol li a");
-
-        setTrainLine($(listings[0]).find('span.num').html());
-
-        var trainList = $.map(listings, function(listing) {
-                var number = $(listing).attr('href').match(/trains\/(\d+)/)[1];
-                return renderLine(listing, statuses[number]);
-            });
-
-        document.getElementById('list').object.setDataArray(trainList);
-        listDisplayed = true;
+    isepta.find_all(function(trains) {
+        setTrainLine(trains[0].line);
     });
-}
 
-function loadStatuses() {
-    console.log('Loading statuses');
-    if ($('#iSeptaUrl').val().length > 0) {
-        $.get("http://trainview.septa.org", function(response) {
-            var statuses = {};
-            $.each($(response).find("#train_table tr:not(.subhead)"), function() {
-                var numberCell = $(this).find("td[align=left]").html();
-                var timeCell = $(this).find("td[align=right]:last").html();
-                if (numberCell && timeCell) {
-                    var number = numberCell.replace('&nbsp;', '');
-                    var time = timeCell.replace("\n", '');
-                    if (time.match(/\d/)) {
-                        time += " late";
-                    }
-                    statuses[number] = time;
-                }
-            });
-            $(document).trigger('statusesLoaded', statuses);
-        });
-    } else {
-        $().trigger('ajaxError');
-    }
+    var trainList = isepta.map_trains(function(train) { train.toString(); });
+
+    document.getElementById('list').object.setDataArray(trainList);
+    listDisplayed = true;
 }
 
 function openISepta() {
@@ -101,7 +80,11 @@ function openMatschafferDotCom() {
 var refreshInterval;
 
 function setRefreshIntervalInMinutes(minutes) {
-    console.debug("Set refresh interval to " + minutes + " minutes");
+    setRefreshIntervalInSeconds(minutes * 60);
+}
+
+function setRefreshIntervalInSeconds(seconds) {
+    console.debug("Set refresh interval to " + seconds + " seconds");
     clearInterval(refreshInterval);
-    setInterval(loadStatuses, minutes * 60 * 1000);
+    setInterval(function() { trainview.refresh(); }, seconds * 1000);
 }

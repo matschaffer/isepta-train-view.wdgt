@@ -1,5 +1,5 @@
 iSeptaAdapter = function(source) {
-  this.source = this.convert_url(source);
+  this.set_source(source);
   this.trains = [];
 };
 
@@ -26,6 +26,10 @@ iSeptaAdapter.prototype = {
     return new Train(number, line, departure_time);
   },
 
+  set_source: function(source) {
+    this.source = this.convert_url(source);
+  },
+
   find: function(number, callback) {
     this.find_all(function(trains) {
       callback($.grep(trains, function(train) { return train.number == number; } ));
@@ -40,6 +44,10 @@ iSeptaAdapter.prototype = {
       $(this).one('loaded', function() { callback(self.trains); });
       this.load_trains();
     }
+  },
+
+  map_trains: function(callback) {
+    this.find_all(function(trains) { $.map(trains, callback); });
   },
 
   trains_are_current: function() {

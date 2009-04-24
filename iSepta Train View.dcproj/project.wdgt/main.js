@@ -40,8 +40,8 @@ function hide()
 //
 function show()
 {
-    loadStatuses();
-    setRefreshIntervalInMinutes(0.5);
+    trainview.refresh();
+    setRefreshIntervalInSeconds(75);
 }
 
 //
@@ -91,7 +91,7 @@ function showFront(event)
 {
     widget.setPreferenceForKey($('#iSeptaUrl').val(), widget.identifier + "-iSeptaUrl");
 
-    loadStatuses();
+    trainview.refresh();
 
     var front = document.getElementById("front");
     var back = document.getElementById("back");

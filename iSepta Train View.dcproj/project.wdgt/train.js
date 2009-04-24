@@ -25,5 +25,8 @@ Train.prototype = {
       this.minutes_late = parseInt(minutes[0], 10);
       this.status += " late";
     }
+  },
+  toString: function() {
+    return this.number;
   }
 };
