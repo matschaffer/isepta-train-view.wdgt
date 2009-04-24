@@ -24,7 +24,7 @@ function setup() {
     if (iSeptaUrl) {
         $('#iSeptaUrl').val(iSeptaUrl);
         loadStatuses();
-        setRefreshInterval(10);
+        setRefreshIntervalInMinutes(10);
     } else {
         showBack();
     }
