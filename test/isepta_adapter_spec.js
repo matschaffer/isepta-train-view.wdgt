@@ -5,24 +5,29 @@ Screw.Unit(function () {
     });
 
     it("should return a collection of trains given an iSepta URL", function(me) {
-      var adapter = new iSeptaAdapter(this.url);
-      adapter.load_trains();
+      var trains, adapter = new iSeptaAdapter(this.url);
 
-      signal(me).when(adapter).triggers('loaded', function() {
-        adapter.find_all(function(trains) {
-          expect(trains.length).to(equal, 5);
-        });
+      signal(me).when(me).triggers('loaded', function() {
+        expect(trains.length).to(equal, 5);
+      });
+
+      adapter.find_all(function(returnedTrains) {
+        trains = returnedTrains;
+        $(me).trigger('loaded');
       });
     });
 
     it("should return trains by ID number", function(me) {
-      var adapter = new iSeptaAdapter(this.url);
+      var train, adapter = new iSeptaAdapter(this.url);
       adapter.load_trains();
 
-      signal(me).when(adapter).triggers('loaded', function() {
-        adapter.find('4656', function(train) {
-          expect(train).to_not(be_undefined);
-        });
+      signal(me).when(me).triggers('loaded', function() {
+        expect(train).to_not(be_undefined);
+      });
+
+      adapter.find('4656', function(returnedTrain) {
+        train = returnedTrain;
+        $(me).trigger('loaded');
       });
     });
 
