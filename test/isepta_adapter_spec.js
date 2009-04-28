@@ -1,11 +1,10 @@
 Screw.Unit(function () {
   describe('An iSeptaAdapter', function(me) {
-    before(function() {
-      this.url = "../examples/trains";
-    });
+    var url = "../examples/trains"
+    var doNothing = function() {};
 
     it("should return a collection of trains given an iSepta URL", function(me) {
-      var trains, adapter = new iSeptaAdapter(this.url);
+      var trains, adapter = new iSeptaAdapter(url);
 
       signal(me).when(me).triggers('loaded', function() {
         expect(trains.length).to(equal, 5);
@@ -18,7 +17,7 @@ Screw.Unit(function () {
     });
 
   it("should provide convenience methods for mapping over available trains", function(me) {
-    var trainNumbers = [], adapter = new iSeptaAdapter(this.url);
+    var trainNumbers = [], adapter = new iSeptaAdapter(url);
 
     signal(me).when(me).triggers('done', function() {
       expect(trainNumbers).to(equal, [6652, 4656, 4664, 4668, 4670]);
@@ -31,7 +30,7 @@ Screw.Unit(function () {
   });
 
     it("should return trains by ID number", function(me) {
-      var train, adapter = new iSeptaAdapter(this.url);
+      var train, adapter = new iSeptaAdapter(url);
       adapter.load_trains();
 
       signal(me).when(me).triggers('loaded', function() {
@@ -56,12 +55,37 @@ Screw.Unit(function () {
       expect(train.line).to(equal, 'r6');
       expect(train.departure_time()).to(equal, '6:02 PM');
     });
-    
+
     it("should convert any weekday or weekend urls to a current url", function() {
-      var adapter = new iSeptaAdapter(this.url);
+      var adapter = new iSeptaAdapter(url);
       adapter.set_source("http://isepta.org/rr/start/7/end/147/wk/trains");
       var currentUrl = "http://isepta.org/rr/start/7/end/147/now/trains";
       expect(adapter.source).to(equal, currentUrl);
     });
+
+    it("should auto-refresh if first train is departed", function(me) {
+      var adapter = new iSeptaAdapter(url);
+
+      signal(me).and_expect(2).triggers_of(adapter, 'loaded');
+
+      adapter.find_all(function(trains) {
+        trains[0].departed = function() { return true; };
+        adapter.find_all(doNothing);
+      });
+    });
+
+    it("shouldn't auto-refresh more than once in 30 minutes if no trains are available", function(me) {
+      var adapter = new iSeptaAdapter("../examples/notrains");
+
+      signal(me).and_expect(2).triggers_of(adapter, 'loaded');
+
+      adapter.find_all(function() {
+        adapter.find_all(function() {
+          //set time to > 30 minutes
+          adapter.find_all(doNothing);
+        });
+      });
+    });
+
   });
 });

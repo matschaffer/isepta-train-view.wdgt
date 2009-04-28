@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>iSepta &ndash; Trains</title>
+		<meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable = no" />
+		<link href="/stylesheets/reset.css?1222660501" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/application.css?1222660501" media="screen" rel="stylesheet" type="text/css" />
+		<script src="/javascripts/jquery.js?1222660501" type="text/javascript"></script>
+<script src="/javascripts/application.js?1222660501" type="text/javascript"></script>
+	</head>
+
+	<body id="trains" class="now">
+		
+<dl>
+	<dt class="a"><a href="/rr/stations/pick_start">From</a></dt>
+	<dd class="a">Suburban Station <img alt="Access" class="hc" src="/images/access.gif?1222660501" /></dd>
+	<dt class="b"><a href="/rr/stations/pick_end">To</a></dt>
+	<dd class="b">Ivy Ridge </dd>
+</dl>
+<a href="/rr/start/8/end/111/stations/swap" id="switch">Switch</a>
+
+
+<div>
+	<ul>
+		<li id="now" class="on"><a href="/rr/start/8/end/111/now/trains">Now</a></li>
+		<li id="wk" class=""><a href="/rr/start/8/end/111/wk/trains">Week</a></li>
+		<li id="sat" class=""><a href="/rr/start/8/end/111/sat/trains">Sat</a></li>
+		<li id="sun" class=""><a href="/rr/start/8/end/111/sun/trains">Sun</a></li>
+	</ul>
+	<h2>
+		<span class="num">Train</span><span class="d-time">Departs</span><span class="a-time">Arrives</span>
+	</h2>
+	<ol>
+	</ol>
+	<h3>&nbsp;</h3>
+</div>
+<a href="/" class="new">iSepta Home</a>		
+	</body>
+</html>
