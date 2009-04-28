@@ -5,16 +5,21 @@ iSeptaAdapter = function(source) {
 
 iSeptaAdapter.prototype = {
   convert_url: function(url) {
-    return url.replace(/(wk|sat|sun)/, 'now');
+    if (url) {
+      return url.replace(/(wk|sat|sun)/, 'now');
+    }
   },
 
   load_trains: function() {
-    var self = this;
-    $.get(this.source, function(response) {
+    if (this.source) {
+      console.debug("Loading trains from " + this.source);
+      var self = this;
+      $.get(this.source, function(response) {
         var listings = $(response).find("ol li a");
         self.trains = $.map(listings, function(listing) { return self.parse(listing); });
         $(self).trigger('loaded');
-    });
+      });
+    }
   },
 
   parse: function(listing) {

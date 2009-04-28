@@ -17,6 +17,19 @@ Screw.Unit(function () {
       });
     });
 
+  it("should provide convenience methods for mapping over available trains", function(me) {
+    var trainNumbers = [], adapter = new iSeptaAdapter(this.url);
+
+    signal(me).when(me).triggers('done', function() {
+      expect(trainNumbers).to(equal, [6652, 4656, 4664, 4668, 4670]);
+    });
+
+    adapter.map_trains(function(train, i) {
+      trainNumbers.push(train.number);
+      if (i == 4) { $(me).trigger('done'); }
+    })
+  });
+
     it("should return trains by ID number", function(me) {
       var train, adapter = new iSeptaAdapter(this.url);
       adapter.load_trains();

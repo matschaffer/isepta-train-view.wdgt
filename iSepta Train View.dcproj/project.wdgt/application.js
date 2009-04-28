@@ -3,15 +3,14 @@ var listDisplayed = false;
 var isepta, trainview;
 
 function setup() {
-    var mockiSepta = "file:///Users/schapht/workspace/isepta-train-view.wdgt/examples/trains";
-    var mockTrainView = "file:////Users/schapht/workspace/isepta-train-view.wdgt/examples/index.html";
-
-    isepta = new iSeptaAdapter('');
-    trainview = new TrainViewAdapter("http://trainview.septa.org", isepta);
-
-    $(trainview).bind('loaded', showTrains);
+    var trainviewUrl = "file:////Users/schapht/workspace/isepta-train-view.wdgt/examples/index.html";
 
     setupjQuery();
+
+    isepta = new iSeptaAdapter();
+    trainview = new TrainViewAdapter(trainviewUrl, isepta);
+    $(trainview).bind('loaded', showTrains);
+
     loadPreferences();
 }
 
@@ -38,10 +37,9 @@ function loadPreferences() {
     var iSeptaUrl = widget.preferenceForKey(widget.identifier + "-iSeptaUrl");
 
     if (iSeptaUrl && iSeptaUrl.length > 0) {
-        $('#iSeptaUrl').val(iSeptaUrl);
-        isepta.set_source(iSeptaUrl);
-        trainview.refresh();
-        setRefreshIntervalInMinutes(10);
+      $('#iSeptaUrl').val(iSeptaUrl);
+      isepta.set_source(iSeptaUrl);
+      show();
     } else {
         showBack();
     }

@@ -5,6 +5,7 @@ TrainViewAdapter = function(source, isepta_adapter) {
 
 TrainViewAdapter.prototype = {
   refresh: function() {
+    console.debug("Refreshing trainview information from " + this.source);
     var self = this;
     $.get(this.source, function(response) {
         $.each($(response).find("#train_table tr:not(.subhead)"), function() {
