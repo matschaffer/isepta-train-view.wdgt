@@ -67,7 +67,7 @@ Screw.Unit(function () {
     it("should auto-refresh if first train is departed", function(me) {
       var adapter = new iSeptaAdapter(url);
 
-      signal(me).within(4).expecting(5).triggers_of(adapter, 'loaded');
+      signal(me).expecting(2).triggers_of(adapter, 'loaded');
 
       adapter.find_all(function(trains) {
         trains[0].departed = function() { return true; };
