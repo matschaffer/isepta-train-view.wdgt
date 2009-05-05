@@ -1,6 +1,7 @@
 iSeptaAdapter = function(source) {
   this.set_source(source);
   this.trains = [];
+  this.loading = false;
 };
 
 iSeptaAdapter.prototype = {
@@ -10,14 +11,22 @@ iSeptaAdapter.prototype = {
     }
   },
 
+  loaded: function() {
+    this.last_update_time = new Date();
+    this.loading = false;
+    $(this).trigger('loaded');
+  },
+
   load_trains: function() {
-    if (this.source) {
+    if (this.source && !this.loading) {
+      this.loading = true;
       console.debug("Loading trains from " + this.source);
       var self = this;
+      self.loading = true;
       $.get(this.source, function(response) {
         var listings = $(response).find("ol li a");
         self.trains = $.map(listings, function(listing) { return self.parse(listing); });
-        $(self).trigger('loaded');
+        self.loaded();
       });
     }
   },
@@ -37,7 +46,10 @@ iSeptaAdapter.prototype = {
 
   find: function(number, callback) {
     this.find_all(function(trains) {
-      callback($.grep(trains, function(train) { return train.number == number; } ));
+      var matches = $.grep(trains, function(train) { return train.number == number; } );
+      if (matches[0]) {
+        callback(matches[0]);
+      }
     });
   },
 
@@ -56,6 +68,10 @@ iSeptaAdapter.prototype = {
   },
 
   trains_are_current: function() {
-    return this.trains.length > 0 && !this.trains[0].departed();
+    return (this.trains.length > 0 && !this.trains[0].departed()) || (this.trains.length == 0 && this.last_call_happened_recently());
+  },
+
+  last_call_happened_recently: function() {
+    return this.last_update_time && (new Date() < this.last_update_time.add(30).minutes());
   }
 };

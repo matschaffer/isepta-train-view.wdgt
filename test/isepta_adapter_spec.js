@@ -1,6 +1,6 @@
 Screw.Unit(function () {
   describe('An iSeptaAdapter', function(me) {
-    var url = "../examples/trains"
+    var url = "../examples/trains";
     var doNothing = function() {};
 
     it("should return a collection of trains given an iSepta URL", function(me) {
@@ -26,7 +26,7 @@ Screw.Unit(function () {
     adapter.map_trains(function(train, i) {
       trainNumbers.push(train.number);
       if (i == 4) { $(me).trigger('done'); }
-    })
+    });
   });
 
     it("should return trains by ID number", function(me) {
@@ -35,6 +35,7 @@ Screw.Unit(function () {
 
       signal(me).when(me).triggers('loaded', function() {
         expect(train).to_not(be_undefined);
+        expect(train.number).to(equal, 4656);
       });
 
       adapter.find('4656', function(returnedTrain) {
@@ -66,7 +67,7 @@ Screw.Unit(function () {
     it("should auto-refresh if first train is departed", function(me) {
       var adapter = new iSeptaAdapter(url);
 
-      signal(me).and_expect(2).triggers_of(adapter, 'loaded');
+      signal(me).within(4).expecting(5).triggers_of(adapter, 'loaded');
 
       adapter.find_all(function(trains) {
         trains[0].departed = function() { return true; };
@@ -74,18 +75,26 @@ Screw.Unit(function () {
       });
     });
 
-    it("shouldn't auto-refresh more than once in 30 minutes if no trains are available", function(me) {
-      var adapter = new iSeptaAdapter("../examples/notrains");
+    describe("with no trains available", function() {
+      var adapter;
+      before(function() {
+        adapter = new iSeptaAdapter("../examples/notrains");
+      });
 
-      signal(me).and_expect(2).triggers_of(adapter, 'loaded');
-
-      adapter.find_all(function() {
+      it("should refresh data every 30 minutes", function(me) {
+        signal(me).expecting(2).triggers_of(adapter, 'loaded');
         adapter.find_all(function() {
-          //set time to > 30 minutes
+          adapter.last_update_time = (new Date).add(-40).minutes();
+          adapter.find_all(doNothing);
+        });
+      });
+
+      it("should not refresh data rapidly", function(me) {
+        signal(me).expecting(1).triggers_of(adapter, 'loaded');
+        adapter.find_all(function() {
           adapter.find_all(doNothing);
         });
       });
     });
-
   });
 });

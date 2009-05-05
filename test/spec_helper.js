@@ -35,7 +35,7 @@ Screw.Utilities.signal = function(me) {
   };
 
   return {
-    and_expect: function(expectedCalls) {
+    expecting: function(expectedCalls) {
       return {
         triggers_of: function(target, signal) {
           var calls = 0;
