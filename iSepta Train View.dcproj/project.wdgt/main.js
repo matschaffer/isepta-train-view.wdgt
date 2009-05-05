@@ -91,6 +91,7 @@ function showFront(event)
 {
     widget.setPreferenceForKey($('#iSeptaUrl').val(), widget.identifier + "-iSeptaUrl");
 
+    isepta.set_source($('#iSeptaUrl').val());
     trainview.refresh();
 
     var front = document.getElementById("front");
