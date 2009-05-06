@@ -76,12 +76,8 @@ Screw.Unit(function () {
     });
 
     describe("with no trains available", function() {
-      var adapter;
-      before(function() {
-        adapter = new iSeptaAdapter("../examples/notrains");
-      });
-
       it("should refresh data every 30 minutes", function(me) {
+        var adapter = new iSeptaAdapter("../examples/notrains");
         signal(me).expecting(2).triggers_of(adapter, 'loaded');
         adapter.find_all(function() {
           adapter.last_update_time = (new Date).add(-40).minutes();
@@ -90,6 +86,7 @@ Screw.Unit(function () {
       });
 
       it("should not refresh data rapidly", function(me) {
+        var adapter = new iSeptaAdapter("../examples/notrains");
         signal(me).expecting(1).triggers_of(adapter, 'loaded');
         adapter.find_all(function() {
           adapter.find_all(doNothing);
