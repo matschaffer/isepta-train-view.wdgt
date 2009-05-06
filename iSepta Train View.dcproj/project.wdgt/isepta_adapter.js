@@ -1,6 +1,7 @@
 iSeptaAdapter = function(source) {
   this.set_source(source);
   this.trains = [];
+  this.delayed_calls = [];
   this.loading = false;
 };
 
@@ -14,6 +15,7 @@ iSeptaAdapter.prototype = {
   loaded: function() {
     this.last_update_time = new Date();
     this.loading = false;
+    this.run_callbacks();
     $(this).trigger('loaded');
   },
 
@@ -57,9 +59,15 @@ iSeptaAdapter.prototype = {
     if (this.trains_are_current()) {
       callback(this.trains);
     } else {
-      var self = this;
-      $(this).one('loaded', function() { callback(self.trains); });
+      this.delayed_calls.push(callback);
       this.load_trains();
+    }
+  },
+
+  run_callbacks: function() {
+    var trains = this.trains;
+    while(this.delayed_calls.length > 0) {
+      this.delayed_calls.pop()(trains);
     }
   },
 
