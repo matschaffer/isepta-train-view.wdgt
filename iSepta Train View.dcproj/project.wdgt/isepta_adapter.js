@@ -1,7 +1,6 @@
 iSeptaAdapter = function(source) {
   this.set_source(source);
   this.trains = [];
-  this.delayed_calls = [];
   this.loading = false;
 };
 
@@ -12,24 +11,27 @@ iSeptaAdapter.prototype = {
     }
   },
 
-  loaded: function() {
+  finish_loading: function() {
     this.last_update_time = new Date();
     this.loading = false;
-    this.run_callbacks();
     $(this).trigger('loaded');
+    $(this).trigger('ready');
   },
 
   load_trains: function() {
     if (this.source && !this.loading) {
-      this.loading = true;
-      console.debug("Loading trains from " + this.source);
-      var self = this;
-      self.loading = true;
-      $.get(this.source, function(response) {
-        var listings = $(response).find("ol li a");
-        self.trains = $.map(listings, function(listing) { return self.parse(listing); });
-        self.loaded();
-      });
+      if (this.trains_are_current()) {
+        $(this).trigger('ready');
+      } else {
+        this.loading = true;
+        console.debug("Loading trains from " + this.source);
+        var self = this;
+        $.get(this.source, function(response) {
+          var listings = $(response).find("ol li a");
+          self.trains = $.map(listings, function(listing) { return self.parse(listing); });
+          self.finish_loading();
+        });
+      }
     }
   },
 
@@ -46,33 +48,15 @@ iSeptaAdapter.prototype = {
     this.source = this.convert_url(source);
   },
 
-  find: function(number, callback) {
-    this.find_all(function(trains) {
-      var matches = $.grep(trains, function(train) { return train.number == number; } );
-      if (matches[0]) {
-        callback(matches[0]);
-      }
-    });
-  },
-
-  find_all: function(callback) {
-    if (this.trains_are_current()) {
-      callback(this.trains);
-    } else {
-      this.delayed_calls.push(callback);
-      this.load_trains();
+  find: function(number) {
+    var matches = $.grep(this.find_all(), function(train) { return train.number == number; });
+    if (matches[0]) {
+      return matches[0];
     }
   },
 
-  run_callbacks: function() {
-    var trains = this.trains;
-    while(this.delayed_calls.length > 0) {
-      this.delayed_calls.pop()(trains);
-    }
-  },
-
-  map_trains: function(callback) {
-    this.find_all(function(trains) { $.map(trains, callback); });
+  find_all: function() {
+    return this.trains;
   },
 
   trains_are_current: function() {

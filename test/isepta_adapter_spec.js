@@ -1,47 +1,26 @@
 Screw.Unit(function () {
   describe('An iSeptaAdapter', function(me) {
     var url = "../examples/trains";
-    var doNothing = function() {};
 
     it("should return a collection of trains given an iSepta URL", function(me) {
-      var trains, adapter = new iSeptaAdapter(url);
+      var adapter = new iSeptaAdapter(url);
 
-      signal(me).when(me).triggers('loaded', function() {
-        expect(trains.length).to(equal, 5);
+      signal(me).when(adapter).triggers('loaded', function() {
+        expect(adapter.find_all().length).to(equal, 5);
       });
 
-      adapter.find_all(function(returnedTrains) {
-        trains = returnedTrains;
-        $(me).trigger('loaded');
-      });
+      adapter.load_trains();
     });
-
-  it("should provide convenience methods for mapping over available trains", function(me) {
-    var trainNumbers = [], adapter = new iSeptaAdapter(url);
-
-    signal(me).when(me).triggers('done', function() {
-      expect(trainNumbers).to(equal, [6652, 4656, 4664, 4668, 4670]);
-    });
-
-    adapter.map_trains(function(train, i) {
-      trainNumbers.push(train.number);
-      if (i == 4) { $(me).trigger('done'); }
-    });
-  });
 
     it("should return trains by ID number", function(me) {
-      var train, adapter = new iSeptaAdapter(url);
+      var adapter = new iSeptaAdapter(url);
+
+      signal(me).when(adapter).triggers('loaded', function() {
+        expect(adapter.find(4656)).to_not(be_undefined);
+        expect(adapter.find(4656).number).to(equal, 4656);
+      });
+
       adapter.load_trains();
-
-      signal(me).when(me).triggers('loaded', function() {
-        expect(train).to_not(be_undefined);
-        expect(train.number).to(equal, 4656);
-      });
-
-      adapter.find('4656', function(returnedTrain) {
-        train = returnedTrain;
-        $(me).trigger('loaded');
-      });
     });
 
     it("should build Train objects from html listings", function() {
@@ -64,33 +43,44 @@ Screw.Unit(function () {
       expect(adapter.source).to(equal, currentUrl);
     });
 
-    it("should auto-refresh if first train is departed", function(me) {
+    it("should refresh if first train is departed", function(me) {
       var adapter = new iSeptaAdapter(url);
 
-      signal(me).expecting(2).triggers_of(adapter, 'loaded');
-
-      adapter.find_all(function(trains) {
-        trains[0].departed = function() { return true; };
-        adapter.find_all(doNothing);
+      $(adapter).one('loaded', function() {
+        adapter.trains[0].departed = function() { return true; };
+        adapter.load_trains();
       });
+
+      signal(me).expecting(2).triggers_of(adapter, 'ready');
+      signal(me).expecting(2).triggers_of(adapter, 'loaded');
+      adapter.load_trains();
     });
 
     describe("with no trains available", function() {
       it("should refresh data every 30 minutes", function(me) {
         var adapter = new iSeptaAdapter("../examples/notrains");
-        signal(me).expecting(2).triggers_of(adapter, 'loaded');
-        adapter.find_all(function() {
+
+        $(adapter).one('loaded', function() {
           adapter.last_update_time = (new Date).add(-40).minutes();
-          adapter.find_all(doNothing);
+          adapter.load_trains();
         });
+
+        signal(me).expecting(2).triggers_of(adapter, 'ready');
+        signal(me).expecting(2).triggers_of(adapter, 'loaded');
+        adapter.load_trains();
       });
 
       it("should not refresh data rapidly", function(me) {
         var adapter = new iSeptaAdapter("../examples/notrains");
+
+        signal(me).expecting(2).triggers_of(adapter, 'ready');
         signal(me).expecting(1).triggers_of(adapter, 'loaded');
-        adapter.find_all(function() {
-          adapter.find_all(doNothing);
+
+        $(adapter).one('ready', function() {
+          adapter.load_trains();
         });
+
+        adapter.load_trains();
       });
     });
   });
