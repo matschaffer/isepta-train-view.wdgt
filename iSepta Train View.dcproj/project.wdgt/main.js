@@ -90,7 +90,7 @@ function showFront(event)
 {
     widget.setPreferenceForKey($('#iSeptaUrl').val(), widget.identifier + "-iSeptaUrl");
 
-    createAdapters(real,
+    createAdapters(trainViewUrl,
                    $('#iSeptaUrl').val());
 
     var front = document.getElementById("front");

@@ -27,6 +27,10 @@ Train.prototype = {
     }
   },
   toString: function() {
-    return this.number;
+    var representation = this.line.toUpperCase() + " departing " + this.departure_time();
+    if (this.status) {
+     representation += " – " + this.status;
+    }
+    return representation;
   }
 };

@@ -1,15 +1,12 @@
 var listDisplayed = false;
 
 var isepta, trainview;
-
-  var stub = "file:////Users/schapht/workspace/isepta-train-view.wdgt/examples/index.html";
-  var real = "http://trainview.septa.org";
+var trainViewUrl = "http://trainview.septa.org";
 
 function setup() {
   setupjQuery();
 
-
-  createAdapters(real,
+  createAdapters(trainViewUrl,
                  getiSeptaUrl());
 }
 
@@ -43,8 +40,6 @@ function setupjQuery() {
 }
 
 function getiSeptaUrl() {
-  // return "file:////Users/schapht/workspace/isepta-train-view.wdgt/examples/trains";
-
   var iSeptaUrl = widget.preferenceForKey(widget.identifier + "-iSeptaUrl");
 
   if (iSeptaUrl && iSeptaUrl.length > 0) {
@@ -65,11 +60,10 @@ function setTrainLine(name) {
 }
 
 function showTrains(e, statuses) {
-  isepta.find_all(function(trains) {
-    setTrainLine(trains[0].line);
-  });
+  var trains = isepta.find_all();
+  setTrainLine(trains[0].line);
 
-  var trainList = isepta.map_trains(function(train) { train.toString(); });
+  var trainList = $.map(trains.slice(0,5), function(train) { return train.toString(); });
 
   document.getElementById('list').object.setDataArray(trainList);
   listDisplayed = true;
@@ -92,5 +86,5 @@ function setRefreshIntervalInMinutes(minutes) {
 function setRefreshIntervalInSeconds(seconds) {
   console.debug("Set refresh interval to " + seconds + " seconds");
   clearInterval(refreshInterval);
-  /* setInterval(function() { if (trainview) { trainview.refresh(); } }, seconds * 1000); */
+  setInterval(function() { if (trainview) { trainview.refresh(); } }, seconds * 1000);
 }
