@@ -127,11 +127,11 @@ body {
     color: rgb(238, 238, 238);
     font-family: 'Helvetica Neue';
     font-size: 9pt;
-    top: 73px;
     left: 26px;
+    top: 23px;
     right: 30px;
     width: auto;
-    bottom: 73px;
+    bottom: 123px;
     height: auto;
 }
 
@@ -142,7 +142,7 @@ body {
     font-size: 10pt;
     width: 221px;
     left: 26px;
-    top: 104px;
+    top: 54px;
 }
 
 #nextTrainLabel {
@@ -159,7 +159,7 @@ body {
     font-size: 34pt;
     text-align: right;
     z-index: 200;
-    color: rgba(238, 238, 238, 0.167969);
+    color: rgba(238, 238, 238, 0.160156);
 }
 
 #iSeptaLabel {
@@ -172,11 +172,11 @@ body {
     font-weight: bold;
     font-family: 'Helvetica Neue';
     text-overflow: ellipsis;
-    left: 101px;
-    top: 38px;
-    right: 105px;
+    left: 26px;
+    top: 109px;
+    right: 180px;
     width: auto;
-    bottom: 112px;
+    bottom: 41px;
     height: auto;
 }
 
@@ -188,11 +188,11 @@ body {
     margin-top: 0px;
     color: rgb(238, 238, 238);
     font-size: 9pt;
-    left: 106px;
-    top: 26px;
-    right: 111px;
+    left: 26px;
+    top: 97px;
+    right: 191px;
     width: auto;
-    bottom: 140px;
+    bottom: 69px;
     height: auto;
 }
 
@@ -229,4 +229,30 @@ body {
     width: auto;
     bottom: 27px;
     height: auto;
+}
+
+#iSeptaUrlLabel1 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: absolute;
+    margin-top: 0px;
+    color: rgb(238, 238, 238);
+    font-family: 'Helvetica Neue';
+    font-size: 9pt;
+    left: 109px;
+    top: 82px;
+    right: 21px;
+    width: auto;
+    bottom: 80px;
+    height: auto;
+}
+
+#trainName {
+    position: absolute;
+    color: black;
+    font-family: HelveticaNeue;
+    font-size: 10pt;
+    top: 100px;
+    width: 105px;
+    left: 142px;
 }

@@ -5,9 +5,26 @@ var trainViewUrl = "http://trainview.septa.org";
 
 function setup() {
   setupjQuery();
+  loadPrefs();
+  createAdapters(trainViewUrl, $('#iSeptaUrl').val());
+}
 
-  createAdapters(trainViewUrl,
-                 getiSeptaUrl());
+function storePrefs() {
+  $.each(['iSeptaUrl', 'trainName'], function() {
+    var val = $('#'+this).val();
+    if (val && val.length > 0) {
+      widget.setPreferenceForKey(val, widget.identifier + '-' + this);
+    }
+  });
+}
+
+function loadPrefs() {
+  $.each(['iSeptaUrl', 'trainName'], function() {
+    var val = widget.preferenceForKey(widget.identifier + '-' + this);
+    if (val && val.length > 0) {
+      $('#'+this).val(val);
+    }
+  });
 }
 
 function createAdapters(trainviewUrl, iSeptaUrl) {
@@ -37,14 +54,6 @@ function setupjQuery() {
     $('#list, #nextTrainLabel').show();
     $('#error').hide();
   });
-}
-
-function getiSeptaUrl() {
-  var iSeptaUrl = widget.preferenceForKey(widget.identifier + "-iSeptaUrl");
-
-  if (iSeptaUrl && iSeptaUrl.length > 0) {
-    return iSeptaUrl;
-  }
 }
 
 function setTrainLine(name) {
