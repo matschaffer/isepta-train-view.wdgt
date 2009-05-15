@@ -93,6 +93,8 @@ function showFront(event)
     createAdapters(trainViewUrl,
                    $('#iSeptaUrl').val());
 
+    setRefreshIntervalInSeconds(75);
+
     var front = document.getElementById("front");
     var back = document.getElementById("back");
 

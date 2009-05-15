@@ -84,7 +84,10 @@ function setRefreshIntervalInMinutes(minutes) {
 }
 
 function setRefreshIntervalInSeconds(seconds) {
-  console.debug("Set refresh interval to " + seconds + " seconds");
   clearInterval(refreshInterval);
-  setInterval(function() { if (trainview) { trainview.refresh(); } }, seconds * 1000);
+  if (trainview) {
+    console.debug("Set refresh interval to " + seconds + " seconds");
+    trainview.refresh();
+    setInterval(trainview.refresh, seconds * 1000);
+  }
 }
