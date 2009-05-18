@@ -43,6 +43,7 @@ function getiSeptaUrl() {
   var iSeptaUrl = widget.preferenceForKey(widget.identifier + "-iSeptaUrl");
 
   if (iSeptaUrl && iSeptaUrl.length > 0) {
+    $('#iSeptaUrl').val(iSeptaUrl);
     return iSeptaUrl;
   }
 }
@@ -88,6 +89,6 @@ function setRefreshIntervalInSeconds(seconds) {
   if (trainview) {
     console.debug("Set refresh interval to " + seconds + " seconds");
     trainview.refresh();
-    setInterval(trainview.refresh, seconds * 1000);
+    setInterval(function() { trainview.refresh() }, seconds * 1000);
   }
 }
