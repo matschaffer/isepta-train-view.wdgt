@@ -4,6 +4,8 @@ var isepta, trainview;
 var trainViewUrl = "http://trainview.septa.org";
 
 function setup() {
+  // trainViewUrl = "file:///Users/schapht/workspace/isepta-train-view.wdgt/examples/index.html";
+  // $('#iSeptaUrl').val("file:///Users/schapht/workspace/isepta-train-view.wdgt/examples/trains");
   setupjQuery();
   loadPrefs();
   createAdapters(trainViewUrl, $('#iSeptaUrl').val());
@@ -65,7 +67,7 @@ function setTrainLine(name) {
     $('#frontImg').attr('src', 'Images/front.png');
   }
 
-  $('#nextTrainLabel').html('Next: ' + name.toUpperCase());
+  $('#nextTrainLabel').html($('#trainName').val() + ': ' + name.toUpperCase());
 }
 
 function showTrains(e, statuses) {

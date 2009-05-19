@@ -10,7 +10,7 @@ var dashcodePartSpecs = {
     "info": { "backgroundStyle": "black", "creationFunction": "CreateInfoButton", "foregroundStyle": "white", "frontID": "front", "onclick": "showBack" },
     "iSeptaLabel": { "creationFunction": "CreateText", "text": "iSepta" },
     "iSeptaUrlLabel": { "creationFunction": "CreateText", "text": "Go get an iSepta - Trains page and \nput it here ⤵" },
-    "iSeptaUrlLabel1": { "creationFunction": "CreateText", "text": "Name the train, if you want" },
+    "iSeptaUrlLabel1": { "creationFunction": "CreateText", "text": "Label the train, if you want" },
     "label": { "creationFunction": "CreateText", "text": "Item" },
     "list": { "creationFunction": "CreateList", "dataArray": ["Item 3"], "labelElementId": "label", "listStyle": "List.EDGE_TO_EDGE", "sampleRows": 1, "useDataSource": true },
     "nextTrainLabel": { "creationFunction": "CreateText", "text": "Loading…" },

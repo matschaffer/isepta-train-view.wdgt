@@ -159,7 +159,7 @@ body {
     font-size: 34pt;
     text-align: right;
     z-index: 200;
-    color: rgba(238, 238, 238, 0.160156);
+    color: rgba(238, 238, 238, 0.15625);
 }
 
 #iSeptaLabel {
@@ -239,9 +239,9 @@ body {
     color: rgb(238, 238, 238);
     font-family: 'Helvetica Neue';
     font-size: 9pt;
-    left: 109px;
+    left: 110px;
     top: 82px;
-    right: 21px;
+    right: 20px;
     width: auto;
     bottom: 80px;
     height: auto;
@@ -253,6 +253,6 @@ body {
     font-family: HelveticaNeue;
     font-size: 10pt;
     top: 100px;
-    width: 105px;
-    left: 142px;
+    width: 45px;
+    left: 202px;
 }
