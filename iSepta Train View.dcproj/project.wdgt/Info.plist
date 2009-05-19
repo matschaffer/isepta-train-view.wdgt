@@ -11,13 +11,13 @@
 	<key>CFBundleDisplayName</key>
 	<string>Septa Train View</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.schapht.widget.iSepta Train View</string>
+	<string>com.matschaffer.widget.iSepta Train View</string>
 	<key>CFBundleName</key>
 	<string>Septa Train View</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.3</string>
+	<string>1.4</string>
 	<key>CFBundleVersion</key>
-	<string>1.3</string>
+	<string>1.4</string>
 	<key>CloseBoxInsetX</key>
 	<integer>15</integer>
 	<key>CloseBoxInsetY</key>
