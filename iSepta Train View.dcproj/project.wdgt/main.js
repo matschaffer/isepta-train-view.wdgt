@@ -88,7 +88,7 @@ function showBack(event)
 //
 function showFront(event)
 {
-    widget.setPreferenceForKey($('#iSeptaUrl').val(), widget.identifier + "-iSeptaUrl");
+    storePrefs();
 
     createAdapters(trainViewUrl,
                    $('#iSeptaUrl').val());

@@ -14,14 +14,12 @@
     <script type="text/javascript" src="Parts/GlassButton.js" charset="utf-8"></script>
     <script type="text/javascript" src="Parts/List.js" charset="utf-8"></script>
     <script type="text/javascript" src="Parts/ButtonHandler.js" charset="utf-8"></script>
-
     <script src="jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
     <script src="mydate.js" type="text/javascript" charset="utf-8"></script>
     <script src="train.js" type="text/javascript" charset="utf-8"></script>
     <script src="isepta_adapter.js" type="text/javascript" charset="utf-8"></script>
     <script src="trainview_adapter.js" type="text/javascript" charset="utf-8"></script>
     <script src="application.js" type="text/javascript" charset="utf-8"></script>
-
     <script type="text/javascript" src="main.js" charset="utf-8"></script>
 </head>
 <body onload="load();" apple-part="com.apple.Dashcode.part.StackLayout">
@@ -44,6 +42,8 @@
         <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-default-image-visibility="hidden" apple-text-overflow="ellipsis" id="iSeptaLabel" onclick="openISepta(event)"></div>
         <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-default-image-visibility="hidden" apple-text-overflow="ellipsis" id="poweredByLabel"></div>
         <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-default-image-visibility="hidden" apple-text-overflow="ellipsis" id="text" onclick="openMatschafferDotCom(event)"></div>
+        <input type="text" name="" value="Next" class="apple-textfield apple-no-children" apple-part="com.apple.Dashcode.part.textfield" id="trainName" maxlength="5">
+        <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-default-image-visibility="hidden" apple-text-overflow="ellipsis" id="iSeptaUrlLabel1"></div>
     </div>
 </body>
 </html>

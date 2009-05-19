@@ -4,10 +4,29 @@ var isepta, trainview;
 var trainViewUrl = "http://trainview.septa.org";
 
 function setup() {
+  // trainViewUrl = "file:///Users/schapht/workspace/isepta-train-view.wdgt/examples/index.html";
+  // $('#iSeptaUrl').val("file:///Users/schapht/workspace/isepta-train-view.wdgt/examples/trains");
   setupjQuery();
+  loadPrefs();
+  createAdapters(trainViewUrl, $('#iSeptaUrl').val());
+}
 
-  createAdapters(trainViewUrl,
-                 getiSeptaUrl());
+function storePrefs() {
+  $.each(['iSeptaUrl', 'trainName'], function() {
+    var val = $('#'+this).val();
+    if (val && val.length > 0) {
+      widget.setPreferenceForKey(val, widget.identifier + '-' + this);
+    }
+  });
+}
+
+function loadPrefs() {
+  $.each(['iSeptaUrl', 'trainName'], function() {
+    var val = widget.preferenceForKey(widget.identifier + '-' + this);
+    if (val && val.length > 0) {
+      $('#'+this).val(val);
+    }
+  });
 }
 
 function createAdapters(trainviewUrl, iSeptaUrl) {
@@ -39,15 +58,6 @@ function setupjQuery() {
   });
 }
 
-function getiSeptaUrl() {
-  var iSeptaUrl = widget.preferenceForKey(widget.identifier + "-iSeptaUrl");
-
-  if (iSeptaUrl && iSeptaUrl.length > 0) {
-    $('#iSeptaUrl').val(iSeptaUrl);
-    return iSeptaUrl;
-  }
-}
-
 function setTrainLine(name) {
   var availableBackgrounds = ['r1', 'r2', 'r3', 'r5', 'r6', 'r7', 'r8'];
 
@@ -57,7 +67,7 @@ function setTrainLine(name) {
     $('#frontImg').attr('src', 'Images/front.png');
   }
 
-  $('#nextTrainLabel').html('Next: ' + name.toUpperCase());
+  $('#nextTrainLabel').html($('#trainName').val() + ': ' + name.toUpperCase());
 }
 
 function showTrains(e, statuses) {
