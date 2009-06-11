@@ -26,10 +26,15 @@ iSeptaAdapter.prototype = {
         this.loading = true;
         console.debug("Loading trains from " + this.source);
         var self = this;
-        $.get(this.source, function(response) {
-          var listings = $(response).find("ol li a");
-          self.trains = $.map(listings, function(listing) { return self.parse(listing); });
-          self.finish_loading();
+
+        $.ajax({
+          url: this.source,
+          error: function() { self.loading = false; },
+          success: function(response) {
+            var listings = $(response).find("ol li a");
+            self.trains = $.map(listings, function(listing) { return self.parse(listing); });
+            self.finish_loading();
+          }
         });
       }
     }
@@ -38,10 +43,13 @@ iSeptaAdapter.prototype = {
   parse: function(listing) {
     var listing = $(listing);
     console.debug("Creating train from listing: " + listing.html());
-    var number = listing.attr('href').match(/trains\/(\d+)/)[1];
-    var line = listing.find('span.num').html();
-    var departure_time = listing.find('.d-time').text().replace(/^\s+/, '');
-    return new Train(number, line, departure_time);
+    var trainLink = listing.attr('href').match(/trains\/(\d+)/);
+    if (trainLink) {
+      var number = trainLink[1];
+      var line = listing.find('span.num').html();
+      var departure_time = listing.find('.d-time').text().replace(/^\s+/, '');
+      return new Train(number, line, departure_time);
+    }
   },
 
   set_source: function(source) {

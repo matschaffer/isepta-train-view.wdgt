@@ -6,7 +6,7 @@
  */
 var dashcodePartSpecs = {
     "done": { "creationFunction": "CreateGlassButton", "onclick": "showFront", "text": "Done" },
-    "error": { "creationFunction": "CreateText", "text": "Something's broken.\n\nAre you online?\n\nIf you are, double check the link on the back. Thanks!" },
+    "error": { "creationFunction": "CreateText", "text": "I couldn't find any trains.\n\nAre you online?\n\nIf you are, double check the link on the back. Thanks!" },
     "info": { "backgroundStyle": "black", "creationFunction": "CreateInfoButton", "foregroundStyle": "white", "frontID": "front", "onclick": "showBack" },
     "iSeptaLabel": { "creationFunction": "CreateText", "text": "iSepta" },
     "iSeptaUrlLabel": { "creationFunction": "CreateText", "text": "Go get an iSepta - Trains page and \nput it here ⤵" },

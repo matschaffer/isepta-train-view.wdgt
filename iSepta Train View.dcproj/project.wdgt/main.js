@@ -90,13 +90,12 @@ function showFront(event)
 {
     storePrefs();
 
-    createAdapters(trainViewUrl,
-                   $('#iSeptaUrl').val());
-
-    setRefreshIntervalInSeconds(75);
+    setupAdapters($('#iSeptaUrl').val());
 
     var front = document.getElementById("front");
     var back = document.getElementById("back");
+
+    hideError();
 
     if (window.widget) {
         widget.prepareForTransition("ToFront");

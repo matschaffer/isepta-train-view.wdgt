@@ -8,7 +8,7 @@ function setup() {
   // $('#iSeptaUrl').val("file:///Users/schapht/workspace/isepta-train-view.wdgt/examples/trains");
   setupjQuery();
   loadPrefs();
-  createAdapters(trainViewUrl, $('#iSeptaUrl').val());
+  setupAdapters($('#iSeptaUrl').val());
 }
 
 function storePrefs() {
@@ -29,16 +29,32 @@ function loadPrefs() {
   });
 }
 
-function createAdapters(trainviewUrl, iSeptaUrl) {
-  if (iSeptaUrl) {
+function createAdapters(iSeptaUrl) {
+  if (typeof(trainview) == "undefined") {
     isepta = new iSeptaAdapter(iSeptaUrl);
-    trainview = new TrainViewAdapter(trainviewUrl, isepta);
+    trainview = new TrainViewAdapter(trainViewUrl, isepta);
     $(trainview).bind('loaded', showTrains);
+  }
+}
+
+function setupAdapters(iSeptaUrl) {
+  if (iSeptaUrl) {
+    createAdapters(iSeptaUrl);
     trainview.refresh();
     setRefreshIntervalInSeconds(75);
   } else {
     showBack();
   }
+}
+
+function showError() {
+  $('#list, #nextTrainLabel').hide();
+  $('#error').show();
+}
+
+function hideError() {
+  $('#list, #nextTrainLabel').show();
+  $('#error').hide();
 }
 
 function setupjQuery() {
@@ -47,14 +63,12 @@ function setupjQuery() {
 
   $().ajaxError(function() {
     if (!listDisplayed) {
-      $('#list, #nextTrainLabel').hide();
-      $('#error').show();
+      showError()
     }
   });
 
   $().ajaxSuccess(function() {
-    $('#list, #nextTrainLabel').show();
-    $('#error').hide();
+    hideError();
   });
 }
 
@@ -72,12 +86,16 @@ function setTrainLine(name) {
 
 function showTrains(e, statuses) {
   var trains = isepta.find_all();
-  setTrainLine(trains[0].line);
+  if (trains.length > 0) {
+    setTrainLine(trains[0].line);
 
-  var trainList = $.map(trains.slice(0,5), function(train) { return train.toString(); });
+    var trainList = $.map(trains.slice(0,5), function(train) { return train.toString(); });
 
-  document.getElementById('list').object.setDataArray(trainList);
-  listDisplayed = true;
+    document.getElementById('list').object.setDataArray(trainList);
+    listDisplayed = true;
+  } else {
+    document.getElementById('list').object.setDataArray(["No upcoming trains"]);
+  }
 }
 
 function openISepta() {
