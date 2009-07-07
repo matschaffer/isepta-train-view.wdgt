@@ -59,6 +59,8 @@ iSeptaAdapter.prototype = {
   },
 
   set_source: function(source) {
+    this.loading = false;
+    this.last_update_time = null;
     this.source = this.convert_url(source);
   },
 

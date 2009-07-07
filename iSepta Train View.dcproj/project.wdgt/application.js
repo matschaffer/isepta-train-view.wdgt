@@ -40,7 +40,6 @@ function createAdapters(iSeptaUrl) {
 function setupAdapters(iSeptaUrl) {
   if (iSeptaUrl) {
     createAdapters(iSeptaUrl);
-    trainview.refresh();
     setRefreshIntervalInSeconds(75);
   } else {
     showBack();
@@ -63,7 +62,7 @@ function setupjQuery() {
 
   $().ajaxError(function() {
     if (!listDisplayed) {
-      showError()
+      showError();
     }
   });
 
@@ -117,6 +116,6 @@ function setRefreshIntervalInSeconds(seconds) {
   if (trainview) {
     console.debug("Set refresh interval to " + seconds + " seconds");
     trainview.refresh();
-    setInterval(function() { trainview.refresh() }, seconds * 1000);
+    setInterval(function() { trainview.refresh(); }, seconds * 1000);
   }
 }
