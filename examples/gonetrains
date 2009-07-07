@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>iSepta &ndash; Trains</title>
+		<meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable = no" />
+		<link href="/stylesheets/reset.css?1246199631" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/application.css?1246199631" media="screen" rel="stylesheet" type="text/css" />
+		<script src="/javascripts/jquery.js?1246199631" type="text/javascript"></script>
+<script src="/javascripts/application.js?1246199631" type="text/javascript"></script>
+	</head>
+
+	<body id="trains" class="now">
+		
+<dl>
+	<dt class="a"><a href="/rr/stations/pick_start">From</a></dt>
+	<dd class="a">Suburban Station </dd>
+	<dt class="b"><a href="/rr/stations/pick_end">To</a></dt>
+	<dd class="b">Ivy Ridge <img alt="Access" class="hc" src="/images/access.gif?1246199631" /></dd>
+</dl>
+<a href="/rr/start/8/end/111/stations/swap" id="switch">Switch</a>
+
+
+<div>
+	<ul>
+		<li id="now" class="on"><a href="/rr/start/8/end/111/now/trains">Now</a></li>
+		<li id="wk" class=""><a href="/rr/start/8/end/111/wk/trains">Week</a></li>
+		<li id="sat" class=""><a href="/rr/start/8/end/111/sat/trains">Sat</a></li>
+		<li id="sun" class=""><a href="/rr/start/8/end/111/sun/trains">Sun</a></li>
+	</ul>
+	<h2>
+		<span class="num">Train</span><span class="d-time">Departs</span><span class="a-time">Arrives</span>
+	</h2>
+	<ol>
+		<li class="r6 gone" id="train_136">
+	<a href="/rr/start/8/end/111/now/trains/4674/stops">
+		<span class="num">R6</span>
+		<span class="d-time gone">
+			
+				GONE &rarr;
+		</span>
+		<span class="a-time">11:00&nbsp;<small>PM</small></span>
+	</a>
+</li><li class="r6 next" id="train_137">
+	<a href="/rr/start/8/end/111/now/trains/4676/stops">
+		<span class="num">R6</span>
+		<span class="d-time ontime">
+							11:38&nbsp;<small>PM</small>
+		</span>
+		<span class="a-time">12:00&nbsp;<small>AM</small></span>
+	</a>
+</li>
+	</ol>
+	<h3>&nbsp;</h3>
+</div>
+<a href="/m" class="new">iSepta Home</a>
+		
+			<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		var pageTracker = _gat._getTracker("UA-4433970-1");
+		pageTracker._initData();
+		pageTracker._trackPageview();
+	</script>
+
+	</body>
+</html>

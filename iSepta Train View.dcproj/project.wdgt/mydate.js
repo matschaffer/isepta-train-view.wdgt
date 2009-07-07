@@ -22,7 +22,7 @@ Date.parse = function(iSeptaTime) {
   if (iSeptaTime instanceof Date) {
     return iSeptaTime;
   } else {
-    var parts = iSeptaTime.match(/(\d+):(\d+) (AM|PM)/);
+    var parts = iSeptaTime.match(/(\d+):(\d+)\s+(AM|PM)/);
     if (parts[1] < 12 && parts[3] == 'PM') {
       parts[1] = parseInt(parts[1], 10) + 12;
     } else if (parts[1] == 12 && parts[3] == 'AM') {

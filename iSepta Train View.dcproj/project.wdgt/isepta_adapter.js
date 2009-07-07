@@ -32,7 +32,8 @@ iSeptaAdapter.prototype = {
           error: function() { self.loading = false; },
           success: function(response) {
             var listings = $(response).find("ol li a");
-            self.trains = $.map(listings, function(listing) { return self.parse(listing); });
+            self.trains = [];
+            $.each(listings, function() { self.parse(this); });
             self.finish_loading();
           }
         });
@@ -40,15 +41,20 @@ iSeptaAdapter.prototype = {
     }
   },
 
+  train_is_gone: function(listing) {
+    return listing.find('.gone').length;
+  },
+
   parse: function(listing) {
     var listing = $(listing);
     console.debug("Creating train from listing: " + listing.html());
     var trainLink = listing.attr('href').match(/trains\/(\d+)/);
-    if (trainLink) {
+    if (trainLink && !this.train_is_gone(listing)) {
+      console.log(listing.html());
       var number = trainLink[1];
       var line = listing.find('span.num').html();
       var departure_time = listing.find('.d-time').text().replace(/^\s+/, '');
-      return new Train(number, line, departure_time);
+      this.trains.push(new Train(number, line, departure_time));
     }
   },
 

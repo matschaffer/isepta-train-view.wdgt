@@ -2,13 +2,13 @@ Screw.Unit(function () {
   describe('A Train', function() {
     var train;
     before(function() {
-      train = new Train(123, "R6", "8:51 AM");
+      train = new Train(123, "R6", "11:38 PM");
     });
 
     it("should store it's number, downcased line and departure time as given", function() {
       expect(train.number).to(equal, 123);
       expect(train.line).to(equal, "r6");
-      expect(train.departure_time()).to(equal, "8:51 AM");
+      expect(train.departure_time()).to(equal, "11:38 PM");
     });
 
     it("should know if it has already departed", function() {

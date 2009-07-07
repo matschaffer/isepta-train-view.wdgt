@@ -30,7 +30,9 @@ Screw.Unit(function () {
                            '  <span class="a-time"> 6:28 <small>PM</small></span>' +
                            '  <small class="rte"></small>' +
                            '</a>');
-      var train = iSeptaAdapter.prototype.parse(html_listing);
+      var adapter = new iSeptaAdapter();
+      adapter.parse(html_listing);
+      var train = adapter.trains[0];
       expect(train.number).to(equal, 4656);
       expect(train.line).to(equal, 'r6');
       expect(train.departure_time()).to(equal, '6:02 PM');
@@ -53,6 +55,14 @@ Screw.Unit(function () {
 
       signal(me).expecting(2).triggers_of(adapter, 'ready');
       signal(me).expecting(2).triggers_of(adapter, 'loaded');
+      adapter.load_trains();
+    });
+
+    it("should skip any trains labeled 'Gone'", function(me) {
+      var adapter = new iSeptaAdapter("../examples/gonetrains");
+      signal(me).when(adapter).triggers('ready', function() {
+        expect(adapter.trains.length).to(equal, 1);
+      });
       adapter.load_trains();
     });
 
