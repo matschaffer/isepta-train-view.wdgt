@@ -34,6 +34,8 @@ function createAdapters(iSeptaUrl) {
     isepta = new iSeptaAdapter(iSeptaUrl);
     trainview = new TrainViewAdapter(trainViewUrl, isepta);
     $(trainview).bind('loaded', showTrains);
+  } else {
+    isepta.set_source(iSeptaUrl);
   }
 }
 
