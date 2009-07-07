@@ -99,7 +99,7 @@ function showTrains(e, statuses) {
 }
 
 function openISepta() {
-  widget.openURL('http://isepta.org');
+  widget.openURL('http://www.isepta.org/m');
 }
 
 function openMatschafferDotCom() {
